@@ -1,0 +1,298 @@
+@mixin setup-padding-slogan2($breakpoint) {
+    $pts2: ('xxs': 1.5rem, 'xs': 1.8rem, 'sm': 2.5rem, 'md': 3.64rem, 'lg': 3.64rem, 'xl': 3.64rem);
+    $pbs2: ('xxs': 1.5rem, 'xs': 1.8rem, 'sm': 2.5rem, 'md': 3.18rem, 'lg': 3.18rem, 'xl': 3.18rem);
+
+	.slogan-2 {
+	    padding-top: map-get($pts2, $breakpoint);
+	    padding-bottom: map-get($pbs2, $breakpoint); 
+	}
+}
+
+@mixin setup-fz-slogan2($breakpoint) {
+	@include if-has-bp(('xs', 'sm'), $breakpoint) {
+	    .slogan-2 {
+            font-size: #{map-get($media-font-size-map-roboto, $breakpoint)}rem;
+        }
+    }
+}
+
+@mixin setup-services-media($breakpoint) {
+    @if $breakpoint == 'xs' {
+        .slogan-2 {
+            font-family: $text-accent-family;
+            font-weight: $text-font-weight-roboto;
+        }
+        section.services-section-main {
+            margin-top: 0;
+            margin-bottom: 0;
+        }
+        //@media (max-width: 575px) { 
+            .service-custom {
+                @include justify-center;
+            }
+        //}
+        // @media (max-width: 360px) {
+            @include setup-service-logos(
+                $item-mr: 15px,
+                $item-mb: 15px,
+                $scaler: 1%,
+                $cv-bottom: 32%,
+                $cv-left: 14%,
+                $fz: 0.8rem,
+                $all-padding: 4% 6% 4% 4%,
+                $fzc: 0.273rem,
+                $size: 5.15rem,
+                $spacer: 1.1
+            );
+        // }
+
+        @media (min-width: 360px) and (max-width: 370px) {
+            @include setup-service-logos(
+                $item-mr: 15px,
+                $item-mb: 15px,
+                $scaler: 1%,
+                $cv-bottom: 31%,
+                $cv-left: 14%,
+                $fz: 0.8rem,
+                $all-padding: 4% 4% 2.5% 2%,
+                $fzc: 0.312rem,
+                $size: 6.0rem,
+                $spacer: 1.1
+            );
+        }
+
+        @media (min-width: 370px) and (max-width: 385px) {
+            @include setup-service-logos(
+                $item-mr: 15px,
+                $item-mb: 15px,
+                $scaler: 2%,
+                $cv-bottom: 24%,
+                $cv-left: 14%,
+                $fz: 0.8rem, 
+                $all-padding: 4% 2% 2.5% 1%,
+                $fzc: 0.318rem,
+                $size: 6.2rem,
+                $spacer: 1.1
+            );
+        }
+
+        @media (min-width: 385px) and (max-width: 430px) {
+            @include setup-service-logos(
+                $item-mr: 15px,
+                $item-mb: 15px,
+                $scaler: 3%,
+                $cv-bottom: 22%,
+                $cv-left: 16%,
+                $fz: 0.8rem, 
+                $all-padding: 4% 1% 2% 0,
+                $fzc: 0.34rem,
+                $size: 6.6rem,
+                $spacer: 1.1
+            );
+        }
+
+        @media (min-width: 430px) and (max-width: 455px) {
+            @include setup-service-logos(
+                $item-mr: auto,
+                $item-mb: 15px,
+                $scaler: 3%,
+                $cv-bottom: 22%,
+                $cv-left: 16%,
+                $fz: 1rem, 
+                $all-padding: 4% 2% 2% 0%,
+                $fzc: 0.389rem,
+                $size: 7.6rem,
+                $spacer: 1.1
+            );
+        }
+
+        @media (min-width: 455px) and (max-width: 460px) {
+            @include setup-service-logos(
+                $item-mr: auto,
+                $item-mb: 15px,
+                $scaler: 2%,
+                $cv-bottom: 22%,
+                $cv-left: 16%,
+                $fz: 1rem, 
+                $all-padding: 4% 2% 2% 1%,
+                $fzc: 0.40rem,
+                $size: 8.2rem,
+                $spacer: 1.1
+            );
+        }
+
+        @media (min-width: 460px) and (max-width: 489px) {
+            @include setup-service-logos(
+                $item-mr: auto,
+                $item-mb: 15px,
+                $scaler: 2%,
+                $cv-bottom: 22%,
+                $cv-left: 17%,
+                $fz: 1rem, 
+                $all-padding: 4% 2% 2% 2%,
+                $fzc: 0.41rem,
+                $size: 8.3rem,
+                $spacer: 1.1
+            );
+        }
+
+        @media (min-width: 489px) and (max-width: 515px) {
+            @include setup-service-logos(
+                $item-mr: 1em,
+                $scaler: 1%,
+                $cv-bottom: 22%,
+                $cv-left: 17%,
+                $fz: 1rem, 
+                $all-padding: 4% 3% 2% 3%,
+                $fzc: 0.42rem,
+                $size: 8.6rem,
+                $spacer: 1.1
+            );
+        }
+
+        // > 320px
+        // @include media-breakpoint-down(xs) 
+        @media (min-width: 515px) and (max-width: 576px) {
+            @include setup-service-logos(
+                $item-mr: 1em,
+                $scaler: 1%,
+                $cv-bottom: 22%,
+                $cv-left: 15%,
+                $fz: 1rem, 
+                $all-padding: 5% 3% 2% 3%,
+                $fzc: 0.44rem,
+                $size: 9.1rem,
+                $spacer: 1.1
+            );
+        }
+        
+        @media  (max-width: 575px) { // с медиазапросом, чтобы не применялся на sm
+            .services-section .service-custom:nth-child(2) {
+        		margin-right: 0;  
+            }
+            .services-section .service-custom:nth-child(4) {
+        		margin-right: 0;  
+            }
+            .services-section .service-custom:nth-child(6) {
+        		margin-right: 0;  
+            }
+        }
+    } // @if $breakpoint == 'xs'
+    @else if $breakpoint == 'sm' {
+        @media (min-width: 576px) /* and (max-width: 991px) */ {
+            .services-section .service-custom:nth-child(3) {
+        		margin-right: 0;  
+            }
+            .services-section .service-custom:nth-child(6) {
+        		margin-right: 0;  
+            }
+        }
+
+        @media (min-width: 576px) and (max-width: 609px) {
+            @include setup-service-logos(
+                $size: 7.5rem,
+                $item-mr: auto,
+                $scaler: 0%,
+                $cv-bottom: 27%,
+                $cv-left: 5%,
+                $all-padding: 4% 2% 4% 2%,
+                $fz: 0.96rem,
+                $fzc: 0.31rem,
+                $spacer: 0.2
+            );
+        }
+
+        @media (min-width: 610px) and (max-width: 640px) {
+            @include setup-service-logos(
+                $size: 8rem,
+                $item-mr: auto,
+                $scaler: 1%,
+                $cv-bottom: 22%,
+                $cv-left: 17%,
+                $all-padding: 4% 3% 2% 2%,
+                $fz: 1rem,
+                $fzc: 0.37rem,
+                $spacer: 0.2
+            );
+        }
+
+        @media (min-width: 641px) and (max-width: 655px) {
+            @include setup-service-logos(
+                $size: 8.3rem,
+                $item-mr: auto,
+                $scaler: 1%,
+                $cv-bottom: 22%,
+                $cv-left: 17%,
+                $all-padding: 4% 3% 2% 2%,
+                $fz: 1.04rem,
+                $fzc: 0.37rem,
+                $spacer: 0.2
+            );
+        }
+
+        @media (min-width: 656px) and (max-width: 685px) {
+            @include setup-service-logos(
+                $size: 8.5rem,
+                $item-mr: auto,
+                $scaler: 2%,
+                $cv-bottom: 22%,
+                $cv-left: 17%,
+                $all-padding: 4% 3% 2% 2%,
+                $fz: 1.07rem,
+                $fzc: 0.39rem,
+                $spacer: 0.2
+            );
+        }
+
+        @media (min-width: 686px) and (max-width: 714px) {
+            @include setup-service-logos(
+                $size: 9rem,
+                $item-mr: auto,
+                $scaler: 2%,
+                $cv-bottom: 22%,
+                $cv-left: 17%,
+                $all-padding: 4% 3% 2% 2%,
+                $fz: 1.1rem,
+                $fzc: 0.39rem,
+                $spacer: 0.2
+            );
+        }
+
+        @media (min-width: 715px) /* and (max-width: 991px) */ {
+            @include setup-service-logos(
+                $size: 9.3rem,
+                $item-mr: auto,
+                $scaler: 2%,
+                $cv-bottom: 22%,
+                $cv-left: 17%,
+                $all-padding: 4% 3% 2% 2%,
+                $fz: 1.1rem,
+                $fzc: 0.39rem,
+                $spacer: 0.2
+            );
+        }
+    } // @else if $breakpoint == 'sm' // md - включено в sm т.к. разбивается неровно  
+    @else if $breakpoint == 'lg' {
+        // от 992px 
+        @include media-breakpoint-up(lg) {
+            @include setup-service-logos(
+                $fz: 1.2rem,
+                $fzc: 0.5rem,
+                $all-padding: 4.59% 2%,
+                $size: 12rem,
+                $spacer: 0.4
+            );
+        }
+    }
+    @else if $breakpoint == 'xl' {
+        // от 1200px
+        @include media-breakpoint-up(xl) {
+            @include setup-service-logos(
+                $fz: 1.454rem,
+                $all-padding: 4.59% 2%,
+                $size: 13.7rem,
+                $spacer: 0.3
+            );
+        }
+    }
+} // end of @mixin setup-services-media($breakpoint) 

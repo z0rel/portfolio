@@ -1,0 +1,52 @@
+syntax = "proto3";
+
+package advertising_sides;
+
+message Reservation {
+    string id = 1;                             // Идентификатор бронирования
+    string date_from = 2;                      // Дата начала бронирования
+    string date_to = 3;                        // Дата окончания бронирования
+    string reservation_type_title = 4;         // Наименование типа бронирования
+    string reservation_type_id = 5;            // Идентификатор типа бронирования
+    string project_title = 6;                  // Заголовок проекта
+    string sales_manager_first_name = 7;       // Имя менеджера по продажам
+    string sales_manager_last_name = 8;        // Фамилия менеджера по продажам
+    string back_office_manager_first_name = 9; // Имя менеджера бек-оффиса
+    string back_office_manager_last_name = 10; // Фамилия менеджера бек-оффиса
+    string brand_title = 11;                   // Наименование бренда
+    string project_code = 12;                  // Код проекта
+    string project_start_date = 13;            // Дата начала проекта
+    int32  project_num_in_year = 14;           // Номер проекта в году
+    string project_id = 15;                    // Код проекта
+    string project_comment = 16;               // Комментарий к проекту
+    bool   branding = 17;                      // Нужен брендинг (да либо нет)
+    string project_created_at = 18;            // Дата создания
+}
+
+message ConstructionSide {
+   string id = 1;                              // Идентификатор стороны
+   string advertising_side_code = 2;           // Код рекламной стороны
+   string side_code = 3;                       // Код стороны
+   string format_code = 4;                     // Код формата
+   string format_title = 5;                    // Наименование формата
+   bool status_connection = 6;                 // Освещение
+   int32 num_in_district = 7;                  // Номер стороны внутри района
+   string postcode_title = 8;                  // Почтовый код
+   string city_title = 9;                      // Наименование города
+   repeated Reservation reservations = 10;     // Бронирования, закрепленные за данной стороной конструкции
+   string package = 11;                        // Наименование пакета
+
+   string district_title = 12;                 // Наименование района
+   string advertising_side_title = 13;         // Наименование типа рекламной стороны
+   string size = 14;                           // Наименование размера
+   string side_title = 15;                     // Наименование типа стороны
+   string owner_title = 16;                    // Наименование владельца
+   bool is_non_rts = 17;                       // Является ли владелец РТС или НОН РТС
+
+   string marketing_address = 18;              // Маркетинговый адрес
+   string legal_address = 19;                  // Юридический адрес
+}
+
+message ConstructionSides {
+  repeated ConstructionSide construction_side = 1; // Список сторон конструкций
+}

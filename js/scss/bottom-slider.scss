@@ -1,0 +1,136 @@
+
+@mixin item-slider-columns($period, $project, $reservation, $branding, $save) {
+  .period-wrapper { grid-column: span $period;}
+  .project-input { grid-column: span $project; }
+  .reservation-type { grid-column: span $reservation; }
+  .reservation-branding { grid-column: span $branding; }
+  .save-button { grid-column: span $save; }
+}
+
+
+@mixin item-slider-columns-mr($period, $pe_mr, $project, $pr_mr, $reservation, $re_mr, $branding, $br_mr, $save) {
+  .period-wrapper { grid-column: span $period; margin-right: $pe_mr; }
+  .project-input { grid-column: span $project; margin-right: $pr_mr; }
+  .reservation-type { grid-column: span $reservation; margin-right: $re_mr; }
+  .reservation-branding { grid-column: span $branding; margin-right: $br_mr; }
+  .save-button { grid-column: span $save; }
+}
+
+
+
+.project-card-slider {
+  width: calc(100% - 240px - 60px) !important;
+  right: 0;
+  @media (max-width: 1764px) { width: calc(100% - 120px - 60px) !important; }
+  @media (max-width: 1430px) { width: calc(100% - 60px - 60px) !important; }
+  @media (max-width: 1376px) { width: calc(100% - 60px) !important; }
+
+  .ant-form {
+    display: grid;
+    grid-template-columns: repeat(30, 1fr);
+    grid-gap: 5px 40px;
+    @media (max-width: 1230px) {
+      grid-template-columns: repeat(100, 1fr);
+      grid-gap: 5px 5px;
+    }
+    margin: 1.5rem 1rem;
+
+    .ant-form-item {
+      margin: 0;
+    }
+
+    .ant-form-item-label {
+      font-weight: 600;
+    }
+
+    .period-wrapper {
+      display: block;
+      overflow: visible;
+      position: relative;
+      line-height: 0;
+
+      .date-icon {
+        position: absolute;
+        top: 2.4rem;
+        left: .4rem;
+        z-index: 99;
+      }
+
+      .ant-picker-large {
+        padding: 6.5px 11px 6.5px 30px;
+      }
+
+      .form-item-period {
+        .ant-form-item-label {
+          z-index: 99;
+
+
+          label {
+            width: 100%;
+            display: inline-flex;
+
+            .period-title {
+              width: 100%;
+              display: grid;
+              grid-template-columns: repeat(2, 1fr);
+              grid-gap: 5px 30px;
+
+              p {
+                margin: 0;
+              }
+            }
+          }
+        }
+      }
+    }
+    .save-button { button { margin-top: 32px }}
+    @include item-slider-columns(5, 7, 4, 3, 5);
+    @media (max-width: 2110px) { @include item-slider-columns(5, 8, 5, 4, 5); }
+    @media (max-width: 1878px) { @include item-slider-columns(5, 8, 5, 4, 5); }
+    @media (max-width: 1440px) { @include item-slider-columns(5, 7, 6, 4, 5); }
+    @media (max-width: 1230px) { @include item-slider-columns-mr(26, 20px, 24, 20px, 20, 20px, 14, 0px, 15) }
+    @media (max-width: 1088px) { @include item-slider-columns-mr(26, 15px, 24, 15px, 20, 15px, 14, 0px, 15) }
+    @media (max-width: 1070px) { @include item-slider-columns-mr(27, 15px, 24, 15px, 16, 15px, 16, 0px, 15) }
+    @media (max-width: 1048px) { @include item-slider-columns-mr(27, 15px, 24, 15px, 17, 15px, 16, 0px, 15) }
+    @media (max-width: 992px) { @include item-slider-columns-mr(27, 15px, 24, 15px, 18, 15px, 16, 0px, 15) }
+  }
+}
+
+.projectSearchInput input {
+  padding-left: 23px !important;
+}
+.projectSearchInput .ant-select-selection-placeholder {
+  padding-left: 23px !important;
+}
+
+.projectSearchInput .ant-select-selection-item {
+  padding-left: 23px !important;
+}
+
+.create-app-slider {
+  height: 320px;
+  .slider-form {
+    display: flex;
+    align-items: center;
+    padding: 20px 2rem 32px 1rem;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+  .item-wrapper {
+    width: 29%;
+    .ant-form-item-required::before {
+      content: none !important;
+    }
+  }
+  .save-button-wrapper {
+    margin-right: 0;
+    width: 100%;
+  }
+  .save-button {
+    width: 120px;
+    margin-left: auto;
+    button {
+      margin: 0;
+    }
+  }
+}

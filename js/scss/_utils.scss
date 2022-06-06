@@ -1,0 +1,264 @@
+@function px2rem($val, $px: 'px') {
+    $res: round(1000.0 * $val / $base-font-size-val);
+    @return #{$res / 1000.0}rem;
+}
+
+@function px2rem-val($val, $px: 'px') {
+    $res: round(1000.0 * $val / 22);
+    @return $res / 1000.0;
+}
+
+@function margin-section($breakpoint) {
+    $bp_vals: ('xxs': 4,
+               'xs': 4,
+               'sm': 3,
+               'md': 3.5,
+               'lg': 4,
+               'xl': 4.363635);
+    @return #{map-get($media-font-size-map, $breakpoint) * map-get($bp_vals, $breakpoint)}rem;
+}
+
+@function margin-bottom-h1($breakpoint) {
+    $bp_vals: ('xxs': 1.25,
+               'xs': 1.5,
+               'sm': 1.75,
+               'md': 1.75,
+               'lg': 2,
+               'xl': 3);
+    @return #{map-get($media-font-size-map, $breakpoint) * map-get($bp_vals, $breakpoint)}rem;
+}
+
+@function margin-h2-bottom($breakpoint) {
+    $bp_vals: ('xxs': 0.9,
+               'xs': 0.9,
+               'sm': 1,
+               'md': 1,
+               'lg': 1,
+               'xl': 1);
+    @return #{map-get($media-font-size-map, $breakpoint) * map-get($bp_vals, $breakpoint)}rem;
+}
+
+@function margin-h2-top($breakpoint) {
+    $bp_vals: ('xxs': 1.2,
+               'xs': 1.4,
+               'sm': 1.7,
+               'md': 1.7,
+               'lg': 1.7,
+               'xl': 1.7);
+    @return #{map-get($media-font-size-map, $breakpoint) * map-get($bp_vals, $breakpoint)}rem;
+}
+
+@function margin-h3-bottom($breakpoint) {
+    $bp_vals: ('xxs': 0.9,
+               'xs': 0.9,
+               'sm': 1,
+               'md': 1,
+               'lg': 1,
+               'xl': 1);
+    @return #{map-get($media-font-size-map, $breakpoint) * map-get($bp_vals, $breakpoint)}rem;
+}
+
+@function margin-h3-top($breakpoint) {
+    $bp_vals: ('xxs': 1.6,
+               'xs': 1.8,
+               'sm': 1.8,
+               'md': 2.0,
+               'lg': 2.3,
+               'xl': 2.3);
+    @return #{map-get($media-font-size-map, $breakpoint) * map-get($bp_vals, $breakpoint)}rem;
+}
+
+
+@mixin section-margins($breakpoint, $selector, $as: "margin", $need-top: true, $need-bottom: true) {
+    #{$selector} {
+        @if $need-top {
+            #{$as}-top: margin-section($breakpoint);
+        }
+        @if $need-bottom {
+            #{$as}-bottom: margin-section($breakpoint);
+        }
+    }
+}
+
+
+@mixin setup-text-icon-width($breakpoint, $selector, $need-height: false, $fz-map: $media-icons-font-size-map) {
+    $fontsize: map-get($fz-map, $breakpoint);
+    @if $breakpoint != 'xl' {
+		#{$selector} {
+                font-size: #{$fontsize * 1}em; 
+				@if $breakpoint == 'xs' {
+					width: 1em;
+                    margin-top: 0.08em;
+                    @if $need-height {
+                        height: 1em;
+                    }
+				}
+				@if $breakpoint = 'sm' {
+					margin-top: 0.19em;
+				}
+        }
+    }
+}
+
+@mixin setup-text-fontsize($breakpoint, $selector, $map: $media-font-size-map-roboto) {
+	#{$selector} {
+		font-size: #{map-get($map, $breakpoint)}rem;
+	}
+}
+
+@mixin setup-svg-icon-base-style-white($selector, $color: $color-white) {
+	#{$selector} {
+		fill: $color;
+		height: 1em;
+		vertical-align: top !important;
+	}
+}
+
+@mixin setup-svg-icon-base-style-text($selector) {
+	#{$selector} {
+		fill: $color-headers;
+		height: 1em;
+		vertical-align: top !important;
+	}
+}
+
+@mixin button-focus-none {
+	.btn:focus, .btn:active {
+	    outline: none !important;
+	    box-shadow: none !important;
+	    background-color: rgba(0,0,0,0);
+        border-color: $color-white;
+    }
+}
+
+@mixin setup-link-active {
+    color: $color-link;
+    border-bottom: 1px solid transparentize($color-accent-light-blue, 0.6) !important;
+}
+
+@mixin setup-link-inactive-md {
+    font-weight: $navbar-font-weight;
+    color: $color-text;
+}
+
+
+@mixin marker-circle-list-style-common($timeline-item-selector, $caps-selector) {
+    padding-left: 0;
+    font-size: 0; // удалить интервалы между блоками
+    #{$timeline-item-selector} {
+        list-style-type: none;
+        vertical-align: top;
+        position: relative;
+
+      	&::before {
+    		content: '';
+    		position: absolute;
+        }
+
+        #{$caps-selector} {
+            width: 100%;
+            padding-left: 0px;
+            padding-right: 0px;
+        }
+    } // end of timeline-item 
+}
+
+@mixin marker-circle-list-style-internal($timeline-item-selector, $caps-selector, $padding-left-main: 0, 
+                                         $margin-left-circle: -2.7em, $margin-left-circle-md: -2.5em,
+                                         $left-vline: -2.7em, $left-vline-md: -2.5em,
+                                         $margin-left-vline: .36em, 
+                                         $margin-left-vline-sm: .35em, 
+                                         $margin-left-vline-md: .37em,
+                                         $margin-left-vline-xl: .36em
+                                         ) {
+    #{$timeline-item-selector $caps-selector} {
+        // padding-left: 2em;
+        padding-left: $padding-left-main;
+    }
+    #{$timeline-item-selector} #{$caps-selector} {
+        display: block;
+    }
+    #{$timeline-item-selector} #{$caps-selector}::before {
+        margin-left: $margin-left-circle;
+        top: .1em;
+    }
+   	#{$timeline-item-selector}::before {
+        margin-left: $margin-left-vline;
+        top: 0.1em;
+        left: $left-vline;
+    }
+   	#{$timeline-item-selector}:last-child::before {
+        top: -2px;
+    }
+    @include media-breakpoint-up('sm') {
+   	    #{$timeline-item-selector}::before {
+   			margin-left: $margin-left-vline-sm;
+            top: 0.2em;
+        }
+        #{$timeline-item-selector} #{$caps-selector}::before {
+            top: .15em;
+        }
+   	    #{$timeline-item-selector}:last-child::before {
+            top: -2px;
+        }
+    }
+    @include media-breakpoint-up('md') {
+        #{$timeline-item-selector} #{$caps-selector}::before {
+            top: .25em;
+        }
+        #{$timeline-item-selector} #{$caps-selector}::before {
+            margin-left: $margin-left-circle-md;
+        }
+   	    #{$timeline-item-selector}::before {
+            margin-left: $margin-left-vline-md;
+            left: $left-vline-md;
+        }
+    }
+    @include media-breakpoint-up('xl') {
+   	    #{$timeline-item-selector}::before {
+   			margin-left: $margin-left-vline-xl;
+        }
+    }
+}
+
+@mixin marker-circle-list-style($timeline-item-selector, $caps-selector, $border-color: $color-white, $background-color: $color-headers,
+                                $line-width: 1px, $width: $marker-circle-diameter) {
+    list-style-type: none;
+    // margin-left: $marker-circle-margin - px2rem(0.5, 'px');
+    margin-bottom: 0;
+    font-size: 0;
+
+   	#{$timeline-item-selector}::before {
+ 		content: '';
+ 		position: absolute;
+ 		width: $line-width;
+ 		height: 100%;
+        border-left-style: solid;
+        border-left-width: $line-width;
+        border-left-color: $border-color;
+    }
+    #{$timeline-item-selector} #{$caps-selector}::before {
+        content: '';
+        position: absolute;
+        width: $width; 
+        height: $width;
+        border-width: $line-width;
+        border-radius: 100%;
+        border-style: solid;
+        border-color: $border-color;
+        background-color: $background-color;
+        background-size: $width $width;
+        background-repeat: no-repeat;
+        margin-top: px2rem(4, 'px');
+    }
+}
+
+
+@function draw_svg_ok($c, $line-width) {
+   //               0       1        2
+   //             X   Y   X   Y    X   Y
+   $f: 'points="16.6 0.4 5.3 11.7 0.4 6.8"';
+   @return inline-svg(
+       '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16.9 12.4">' +
+       '<polyline #{$f} stroke-miterlimit="10" stroke-width="#{$line-width}" stroke="#{$c}" fill="none"/></svg>');
+}

@@ -1,0 +1,11 @@
+@mixin background-center($bg-size: 100%) {
+	background-clip: border-box;
+	background-origin: padding-box;
+	background-position: 50% 0%;
+	background-position-x: 50%;
+	background-position-y: 0%;
+	background-size: $bg-size $bg-size;
+	background-attachment: scroll;
+	background-size: cover;
+	box-sizing: border-box;
+}

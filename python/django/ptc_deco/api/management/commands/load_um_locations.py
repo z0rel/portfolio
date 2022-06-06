@@ -1,0 +1,1 @@
+from ._load_um_locations import Command

@@ -1,0 +1,35 @@
+.how-we-works-main {
+	background-color: $color-headers;
+    color: $color-white;
+}
+
+.how-we-works {
+    // padding-left: $standard-margin;
+	h1 {
+		color: $color-white;
+    }
+    .caps {
+        font-family: 'Roboto';
+        font-weight: $font-weight-bold;
+    }
+    .descr {
+        font-family: 'Roboto';
+        font-weight: $font-weight-regular;
+        margin-bottom: 0;
+        padding-bottom: 1rem;
+    }
+    .timeline-item:last-child .descr {
+        padding-bottom: 0;
+    }
+}
+
+
+.timeline-block {
+    @include marker-circle-list-style-common('.timeline-item', '.caps');
+    .timeline-item {
+        .descr {
+            padding-left: 0px;
+            padding-right: 0px;
+        } 
+    } // end of timeline-item 
+}

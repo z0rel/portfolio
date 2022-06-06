@@ -1,0 +1,57 @@
+@import "_mixins/services/complex-img-width";
+@import "_includes/pages/index/about-company-media";
+
+
+@mixin setup-service-logos(
+		$fz: 1.454rem,
+		$fzc: 0.54rem,
+		$item-mr: 1.5rem,
+		$item-mb: false,
+		$all-padding: 4% 1%, 
+		$scaler: 0%,
+		$cv-bottom: 15%,
+		$cv-left: 10%,   
+		$size: 13.7rem,
+		$spacer: 0.3
+	) {
+
+	.service-custom {
+		width: $size+$spacer;
+		margin-right: $item-mr;  
+		@if $item-mb {
+			margin-bottom: $item-mb; 
+		}
+		@else {
+			margin-bottom: 1em; 
+		}
+	}
+    .service-custom .subblock {
+        font-size: $fz;
+		margin: auto;
+    }
+    // .service-custom .subblock.text {
+		// width: $size;
+    // }
+    .service-custom-img .svg.service-image {
+		width: $size+($spacer*0.5);
+		height: $size+$spacer;
+	}
+    .service-custom .service-complex-img {
+		font-size: $fzc;
+		@if $fz < 1.2rem  {
+			font-weight: $font-weight-bold;
+		}
+		@else {
+			font-weight: $font-weight-medium;
+		}
+		padding: $all-padding;
+		@include service-complex-img-setup-width(
+			$scaler: $scaler, 
+			$cv-bottom: $cv-bottom,
+			$cv-left: $cv-left
+		);
+
+		height: $size+$spacer;
+	}
+}
+

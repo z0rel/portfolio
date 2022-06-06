@@ -1,0 +1,11 @@
+.contacts-form {
+    div.errorMsg {
+        color: red;
+    }
+    .invalidElem {
+        border: medium solid red;
+	}
+	#form-button {
+		background: $color-headers !important;
+	}
+}

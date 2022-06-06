@@ -1,0 +1,86 @@
+@import "vars";
+@import "_mixins/grid/grid-bp-setup";
+@import "_mixins/justify-center";
+@import "_mixins/services/service-logos";
+@import "_includes/pages/index/about-company-media";
+@import "_includes/pages/index/how-we-works-media";
+@import "_mixins/sizes-by-fonts";
+
+
+
+/*==========  Mobile First  ==========*/
+@import "_includes/setup-headers-style-media";
+@import "_includes/header/navbar-media";
+@import "_includes/pages/index/jumbotron-media";
+@import "_includes/pages/index/services-media";
+
+
+@each $bp in ('xxs', 'xs', 'sm', 'md', 'lg', 'xl') {
+    $common-bp: transform-spec-bp($bp); 
+
+    @include setup-h12345($bp);
+
+    @if True        { @include grid-bp-setup($bp)                          { @include section-margins($bp, "section"); } }
+    // Заголовки
+    @if True        { @include grid-bp-setup($bp)                          { @include setup-headers-style($bp);                } }
+    @if $bp != 'xs' { @include grid-bp-setup($common-bp, $common-xs: true) { @include setup-fz-content-block--p($common-bp);   } } // Стили в которых не нужно деление на xxs и xs
+
+
+    // Навигация
+    @if $bp != 'xs' {                                                        @include setup-navbar-media($common-bp);            } // то, что имеет медиазапросы внутри и диапазоны с дроблением на медиаподзапросы
+
+    // Хлебные крошки
+    @if True {                                                               @include setup-breadcrumb-media($bp); } 
+
+    @if True        { @include grid-bp-setup($bp)                          { @include section-margins($bp, ".container-fluid.footer", $as: "padding"); } }
+    @if True        { @include grid-bp-setup($bp)                          { @include section-margins($bp, ".container-fluid.footer", $need-bottom: false); } }
+    @if $bp != 'xs' { @include grid-bp-setup($common-bp, $common-xs: true) { @include setup-text-icon-width($common-bp, $selector: ".footer .phone .svg, .footer .email .svg", $fz-map: $media-icons-font-size-map-navigation); } }
+    @if $bp != 'xs' { @include grid-bp-setup($common-bp, $common-xs: true) { @include setup-text-fontsize($common-bp, $selector: ".footer p, .footer a", $map: $media-font-size-map-roboto-footer); } }
+    @if $bp != 'xs' { @include grid-bp-setup($common-bp, $common-xs: true) { @include setup-footer-media($common-bp); } }
+
+    // Настройка внутренней страницы
+    @if $bp != 'xs' { @include grid-bp-setup($common-bp, $common-xs: true) { @include setup-text-icon-width($common-bp, $selector: ".internal-body .svg", $need-height: true); } }
+    @if $bp != 'xs' { @include grid-bp-setup($common-bp, $common-xs: true) { @include setup-text-icon-width($common-bp, $selector: ".internal-body .svg.thin", $need-height: true, $fz-map: $media-icons-font-size-map-thin); } }
+    @if $bp != 'xs' { @include grid-bp-setup($common-bp, $common-xs: true) { @include setup-text-icon-width($common-bp, $selector: ".internal-body .svg.superthin", $need-height: true, $fz-map: $media-icons-font-size-map-superthin); } }
+    @if $bp != 'xs' { @include grid-bp-setup($common-bp, $common-xs: true) { @include setup-text-icon-width($common-bp, $selector: ".internal-body .svg.semithin", $need-height: true, $fz-map: $media-icons-font-size-map-semithin); } }
+    @if True        { @include grid-bp-setup($bp)                          { @include setup-text-fontsize($bp, $selector: ".internal-body p, .internal-body .as-p, .internal-body .top-oklist-fz li", $map: $media-font-size-map-roboto-internal); } }
+    @if True        { @include grid-bp-setup($bp)                          { @include setup-text-fontsize($bp, $selector: ".internal-body .descr-cont p, .internal-body ul li, .container.portfolio-section ul li", $map: $media-font-size-map-roboto-internal-subcat); } }
+    @if $bp != 'xs' { @include grid-bp-setup($common-bp, $common-xs: true) { @include setup-text-fontsize($common-bp, $selector: ".internal-body h2, .internal-body .style-h2", $map: $media-font-size-map-internal-h2); } }
+    @if True        { @include grid-bp-setup($bp)                          { @include setup-text-fontsize($bp, $selector: ".internal-body h3, .internal-body h2.style-h3, .internal-body .top-oklist-fz li .style-h3", $map: $media-font-size-map-internal-h3); } }
+
+
+    // Хедер титульной страницы 
+    @if True        { @include grid-bp-setup($bp)                          { @include setup-padding-slogan2($bp);              } }
+    @if $bp != 'xs' { @include grid-bp-setup($common-bp, $common-xs: true) { @include setup-fz-slogan2($common-bp);            } } // Стили в которых не нужно деление на xxs и xs
+    @if $bp != 'xs' {                                                        @include setup-jumbotron-media($common-bp);         } // то, что имеет медиазапросы внутри и диапазоны с дроблением на медиаподзапросы
+
+    // Настройка внутренней страницы
+    @if $bp != 'xs' { @include grid-bp-setup($common-bp, $common-xs: true) { @include setup-internal-page-media($common-bp); } }
+
+    // Настройки нутрянки портфолио
+    @if $bp != 'xs' {                                                        @include setup-internal-portfolio-media($common-bp); }
+
+    // Услуги
+    @if $bp != 'xs' {                                                        @include setup-services-media($common-bp);          } // то, что имеет медиазапросы внутри и диапазоны с дроблением на медиаподзапросы
+
+    // О компании
+    @if True        { @include grid-bp-setup($bp)                          { @include setup-about-company-li-icon-width($bp);  } }
+    @if $bp != 'xs' { @include grid-bp-setup($common-bp, $common-xs: true) { @include setup-about-company($common-bp);         } } // Стили в которых не нужно деление на xxs и xs
+
+    // Как мы работаем
+    @if True        { @include grid-bp-setup($bp)                          { @include setup-how-we-works-margins($bp);         } }
+    @if True        { @include grid-bp-setup($bp)                          { @include setup-how-we-works-xs-paddings($bp)      } }
+    @if $bp != 'xs' { @include grid-bp-setup($common-bp, $common-xs: true) { @include media-main-how-we-works($common-bp);     } } // Стили в которых не нужно деление на xxs и xs
+    
+    //  Портфолио
+    @if $bp != 'xs' {                                                        @include portfolio-main-media($common-bp);          } // то, что имеет медиазапросы внутри и диапазоны с дроблением на медиаподзапросы
+    @if True        { @include grid-bp-setup($bp)                          { @include setup-text-fontsize($bp, $selector: ".lg-sub-html p", $map: $media-font-size-map-roboto-sub-html); } }
+    @if True        { @include grid-bp-setup($bp)                          { @include setup-text-fontsize($bp, $selector: ".lg-outer .lg .lg-sub-html h4, .lg-outer .lg .lg-sub-html .style-h4", $map: $media-font-size-map-internal-lg-h4); } }
+
+    // Контакты
+    @if True        { @include grid-bp-setup($bp)                          { @include section-margins($bp, "section.cdt > .container", $as: "padding"); } } // contacts-data
+    @if True        { @include grid-bp-setup($bp)                          { @include section-margins($bp, "section.contacts-form", $as: "padding", $need-top: false); } }
+    @if $bp != 'xs' { @include grid-bp-setup($common-bp, $common-xs: true) { @include setup-text-icon-width($common-bp, $selector: ".cdt .svg, .contacts-form .svg"); } } // contacts-data
+    @if $bp != 'xs' { @include grid-bp-setup($common-bp, $common-xs: true) { @include setup-text-fontsize($common-bp, $selector: ".cdt p, .contacts-form p, .contacts-form form", $map: $media-font-size-map-roboto); } } // contacts-data
+    @if True        { @include grid-bp-setup($bp)                          { @include setup-contact-form-media($bp); } }
+}

@@ -1,0 +1,31 @@
+$spacer: 1rem !default;
+
+
+$spacers: () !default;
+$spacers: map-merge((
+        0: 0,
+        1: ($spacer * .25),
+        2: ($spacer * .5),
+        3: $spacer,
+        4: ($spacer * 1.5),
+        5: ($spacer * 3),
+        6: ($spacer * 7),
+        7: ($spacer * 8),
+        8: ($spacer * 4),
+        9: ($spacer * 5),
+        10: ($spacer * 6)
+), $spacers
+);
+
+
+
+@import "node_modules/bootstrap/scss/functions";
+@import "node_modules/bootstrap/scss/variables";
+
+@import "node_modules/bootstrap/scss/mixins";
+@import "node_modules/bootstrap/scss/reboot";
+
+@import "bootstrap_custom/type_global";                    // has side effects
+// @import "node_modules/bootstrap/scss/grid";
+// @import "node_modules/bootstrap/scss/nav";                  // ---
+// @import "node_modules/bootstrap/scss/navbar";

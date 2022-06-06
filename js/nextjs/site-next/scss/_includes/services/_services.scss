@@ -1,0 +1,166 @@
+@import "vars";
+
+@mixin service-border-radius() {
+    border-radius: 0.75rem !important;
+    border: 1px solid $color-service-border !important;
+    border: 1px solid $color-accent-dark-blue !important;
+
+    background-color: $color-transparent;
+    margin-bottom: 0.5rem; 
+}
+
+// .row.services-section {
+//     padding-left: $standard-margin;
+// } 
+
+.container {
+    .slogan-2 p {
+        margin: 0;
+    }
+    .services-section {
+        ul {
+            list-style-type: none;
+            margin-bottom: 0;
+        }
+    }
+    .services-section > ul {
+        display: flex;
+        flex-flow: row wrap;
+    }
+
+    .services-section a {
+      text-decoration: none;
+    }
+}
+
+.service-custom {
+    width: 13.7rem;
+    font-family: "Roboto";
+    font-size: 1.454rem;
+    // font-weight: $header2-font-weight;
+    font-weight: 500;
+
+    a {
+        color: $color-service-head;
+    }
+    .subblock {
+	    text-align: center;
+    }
+
+    .svg {
+        width: 13.59rem;
+	    height: 13.59rem;
+	    border-style: none;
+	    padding-left: 2px;
+        vertical-align: middle;
+    }
+
+    .service-custom-img {
+        @include service-border-radius;
+        width: 100%;
+    }
+
+    .service-complex-img {
+        ul {
+            list-style-type: none;
+        }
+        .serv-text {
+            text-transform: uppercase;
+        }
+        .service-col1 {
+            padding: 0;
+            display: inline-block;
+            height: 100%;
+        }
+        .service-col2 {
+            padding: 0;
+            margin: 0;
+            display: inline-block;
+            height: 100%;
+        }
+        .service-row2 {
+            padding-top: 0.2%;
+        }
+        .service-row {
+            text-align: center;
+        }
+        .svg {
+            height: 50%;
+            overflow: auto;
+            padding-bottom: 10px;
+        }
+        .svg.s-intelligence {
+            padding-right: 13%;
+        }
+        .s-block-intelligence {
+		    width: 28%;
+        }
+        .s-block-computer-vision {
+            width: 37%;
+            margin-left: 2%;
+        }
+        .s-block-networks {
+		    width: 30%;
+        }
+        .svg.s-automation {
+            width: 100%;
+            height: 87%;
+        }
+        .svg.s-applications {
+            width: 86%;
+        }
+
+	    font-size: 0.54rem;
+        font-weight: $font-weight-medium;
+        color: $color-service-complex-text;
+		width: 100%;
+
+        @include service-border-radius;
+    }
+}
+
+.service-complex-img {
+    .service-row, .service-row2 {
+        height: 50%;
+    }
+}
+
+.service-custom-img {
+    	&.s-service-shipping-start {
+    		fill: $color-service-shipping;
+    	}
+    	&.s-service-repair {
+    		fill: $color-service-repair;
+    	}
+    	&.s-service-modernization {
+    		fill: $color-service-modernization;
+    	}
+    	&.s-service-integration {
+    		fill: $color-service-integration;
+    	}
+}
+
+
+.service-custom {
+	.svg.s-intelligence {
+		vertical-align: top;
+		fill: $color-list-promo-icons;
+	}
+	.svg.s-automation {
+		vertical-align: top;
+		fill: $color-service-head;
+	}
+	.svg.s-applications {
+		vertical-align: top;
+		fill: $color-list-promo-icons; 
+	}
+	.svg.s-computer-vision {
+		vertical-align: middle;
+		fill: $color-list-promo-icons;
+	}
+	.svg.s-networks {
+		fill: $color-service-head;
+		vertical-align: top;
+	}
+}
+

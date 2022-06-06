@@ -1,0 +1,48 @@
+# Make-файл для сборки конвертера
+
+include roc_tests.pri
+
+# Пути проекта                  {
+
+DESTDIR          = build/rollout_center_tests/bin
+OBJECTS_DIR      = build/rollout_center_tests/obj
+DEPENDS_DIR      = build/rollout_center_tests/depends
+
+#}
+
+# Определение базовых переменных {
+
+TARGET           = $(DESTDIR)/$(TARGET_NAME)
+SOURCES_BASIS    = $(basename $(notdir $(BASE_SOURCES)))
+ROC_BASIS        = $(basename $(notdir $(ROC_SOURCES)))
+SRCOBJECTS       = $(foreach depfile, $(SOURCES_BASIS), $(OBJECTS_DIR)/$(depfile).o) 
+ROCOBJECTS       = $(foreach depfile, $(ROC_BASIS), $(OBJECTS_DIR)/$(depfile).o) 
+OBJECTS_BASE     = $(SRCOBJECTS) $(ROCOBJECTS)
+SRCDEPFILES      = $(foreach depfile, $(SOURCES_BASIS), $(DEPENDS_DIR)/$(depfile).d)
+ROCDEPFILES      = $(foreach depfile, $(ROC_BASIS), $(DEPENDS_DIR)/$(depfile).d)
+DEPFILES         = $(SRCDEPFILES) $(ROCDEPFILES)
+
+# }
+
+include  Makefile_roc.in
+
+# Генерация файлов зависимостей для обычных исходников {
+
+$(SRCDEPFILES): $(DEPENDS_DIR)/%.d: $(SOURCE_DIR)/%.cpp | $(DEPENDS_DIR)
+	@$(call dependsGenCmd,d)
+
+$(ROCDEPFILES): $(DEPENDS_DIR)/%.d: $(ROC_DIR)/%.cpp | $(DEPENDS_DIR)
+	@$(call dependsGenCmd,d)
+
+#}
+# Правила сборки объектных файлов {
+
+$(SRCOBJECTS): $(OBJECTS_DIR)/%.o: $(SOURCE_DIR)/%.cpp | $(OBJECTS_DIR) 
+	$(CXX) -c $(CXXFLAGS)                  $(INCPATH) -o $(OBJECTS_DIR)/$(*F).o $<
+                                                                                    
+$(ROCOBJECTS): $(OBJECTS_DIR)/%.o: $(ROC_DIR)/%.cpp | $(OBJECTS_DIR) 
+	$(CXX) -c $(CXXFLAGS)                  $(INCPATH) -o $(OBJECTS_DIR)/$(*F).o $<
+
+#}
+
+# vim:foldmethod=marker:foldmarker={,}

@@ -1,0 +1,46 @@
+@mixin setup-h12345($breakpoint) {
+	@if $breakpoint == 'xxs' {
+		.style-h1 { font-size: px2rem(map-get($fz-h1, 'xxxs')); }
+		.style-h2 { font-size: px2rem(map-get($fz-h2, 'xxxs')); }
+		@media (min-width: 330px) {
+			.style-h1 { font-size: px2rem(map-get($fz-h1, 'xxs')); }
+		} 
+	}
+	@else {
+		@include grid-bp-setup($breakpoint) {
+			.style-h1 { font-size: px2rem(map-get($fz-h1, $breakpoint)); }
+			.style-h2 { font-size: px2rem(map-get($fz-h2, $breakpoint)); }
+		}
+		@if $breakpoint == 'xs' {
+			@media (min-width: 410px) {
+				.style-h1 { font-size: px2rem(map-get($fz-h1, 'xs-2')); }
+			}
+			@media (min-width: 445px) {
+				.style-h1 { font-size: px2rem(map-get($fz-h1, 'xs-3')); }
+			}
+			@media (min-width: 510px) {
+				.style-h1 { font-size: px2rem(map-get($fz-h1, 'xs-4')); }
+			}
+		}
+	}
+}
+
+
+@mixin setup-fontsize-by-breakpoint($breakpoint, $coeff: 1) {
+	$fz: map-get($media-font-size-map, $breakpoint);
+	@if $breakpoint == 'xl' {
+		font-size: #{$fz * $coeff}rem;
+	}
+	@else {
+		font-size: #{$fz * 0.9 * $coeff}rem;
+	}
+}
+
+
+@mixin setup-fz-content-block--p($breakpoint) {
+	@include if-has-bp(('xs', 'sm'), $breakpoint) {
+	    .content-block p {
+		    @include setup-fontsize-by-breakpoint($breakpoint);
+        }
+    }
+}

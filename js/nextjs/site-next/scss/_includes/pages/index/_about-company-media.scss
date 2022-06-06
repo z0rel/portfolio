@@ -1,0 +1,80 @@
+
+@mixin margin-bottom-by-breakpoint($selector, $margin-bottom) {
+	li.#{$selector} {
+		margin-bottom: $margin-bottom;
+	}
+}
+
+@mixin setup-about-company-li-icon-width($breakpoint) {
+	@include if-has-bp(('xxs', 'xs', 'sm', 'md', 'lg'), $breakpoint) {
+		$li-icon-width: map-get($li-icon-width-map, $breakpoint);
+		.content-block.about-company li {
+			.icon-our-work-img {
+				width: $li-icon-width;
+			}
+			.icon-our-work {
+				width: $li-icon-width;
+			}
+			.icon-our-work-text {
+				width: 100%-$li-icon-width*2;
+			}
+		}
+	}
+}
+
+
+
+@mixin setup-about-company($breakpoint) {
+	@include if-has-bp(('xs', 'sm', 'md', 'lg', 'xl'), $breakpoint) {
+		$fontsize: map-get($media-font-size-map, $breakpoint);
+		.content-block.about-company {
+			margin-top: $fontsize * 2.0; 
+			p {
+				font-size: #{map-get($media-font-size-map-roboto, $breakpoint)}rem;
+			}
+			h2 {
+				@include setup-fontsize-by-breakpoint($breakpoint);
+			}
+			li {
+				font-size: #{map-get($media-font-size-map-roboto, $breakpoint)}rem;
+				// img.controller {
+				// 	width: #{$fontsize*1.6}rem;
+				// 	height: #{$fontsize*1.6}rem;
+				// }
+				// img.intelligence {
+				// 	width: #{$fontsize*1.8}rem;
+				// 	height: #{$fontsize*1.8}rem;
+				// }
+				// .s-networks {
+				// 	width: #{$fontsize*1.6}rem;
+				// 	height: #{$fontsize*1.6}rem;
+				// }
+				// .icon-our-work.icon-repair {
+				// 	font-size: #{$fontsize*1.3}rem;
+				// 	margin-top: #{$fontsize*0.4}rem;
+				// }
+				// .icon-our-work.icon-code {
+				// 	font-size: #{$fontsize*1.5}rem;
+				// }
+				.icon-our-work-text .descr {
+					margin-bottom: #{$fontsize * 0.4}rem;
+				}
+				.icon-our-work-text .howlong {
+					font-size: #{$fontsize*0.75}rem;
+					font-weight: $header-font-weight;
+					color: $color-how-we-works-secondary;
+					margin-bottom: 0;
+				}
+				// .icon-our-work-img {
+				// 	font-size: #{$fontsize * 1.6}rem;
+				// }
+				// .icon-our-work {
+				// 	font-size: #{$fontsize * $icon-fontsize-coeff}em;
+				// }
+				.icon-our-work-text {
+					padding-left: #{$fontsize}rem;
+				}
+			} // end of li
+		} // end of .content-block.about-company
+	} // @if $breakpoint == 'xs' or $breakpoint == 'sm'
+}

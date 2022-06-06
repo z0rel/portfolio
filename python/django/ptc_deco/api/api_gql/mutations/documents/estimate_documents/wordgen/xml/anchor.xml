@@ -1,0 +1,47 @@
+<wp:anchor {ns} distT="0" distB="0" distL="114300" distR="114300" simplePos="0" relativeHeight="251659264" behindDoc="0" locked="0" layoutInCell="1" allowOverlap="1">
+  <wp:simplePos x="0" y="0"/>
+  <wp:positionH relativeFrom="column">
+    <wp:posOffset>{posOffsetH}</wp:posOffset>
+  </wp:positionH>
+  <wp:positionV relativeFrom="paragraph">
+    <wp:posOffset>{posOffsetV}</wp:posOffset>
+  </wp:positionV>
+  <wp:extent cx="{cx}" cy="{cy}"/>
+  <wp:effectExtent l="0" t="0" r="0" b="0"/>
+  <wp:wrapNone/>
+  <wp:docPr id="{shape_id}" name="{name}"/>
+  <wp:cNvGraphicFramePr>
+    <a:graphicFrameLocks xmlns:a="http://purl.oclc.org/ooxml/drawingml/main" noChangeAspect="1"/>
+  </wp:cNvGraphicFramePr>
+  <a:graphic xmlns:a="http://purl.oclc.org/ooxml/drawingml/main">
+    <a:graphicData uri="http://purl.oclc.org/ooxml/drawingml/picture">
+      <pic:pic {ns}>
+        <pic:nvPicPr>
+          <pic:cNvPr id="{pic_id}" name="{fname}"/>
+          <pic:cNvPicPr/>
+        </pic:nvPicPr>
+        <pic:blipFill>
+          <a:blip r:embed="{rId}"/>
+          <a:stretch>
+            <a:fillRect/>
+          </a:stretch>
+        </pic:blipFill>
+        <pic:spPr>
+          <a:xfrm>
+            <a:off x="0" y="0"/>
+            <a:ext cx="{cx}" cy="{cy}"/>
+          </a:xfrm>
+          <a:prstGeom prst="rect">
+            <a:avLst/>
+          </a:prstGeom>
+        </pic:spPr>
+      </pic:pic>
+    </a:graphicData>
+  </a:graphic>
+  <wp14:sizeRelH relativeFrom="page">
+    <wp14:pctWidth>0%</wp14:pctWidth>
+  </wp14:sizeRelH>
+  <wp14:sizeRelV relativeFrom="page">
+    <wp14:pctHeight>0%</wp14:pctHeight>
+  </wp14:sizeRelV>
+</wp:anchor>

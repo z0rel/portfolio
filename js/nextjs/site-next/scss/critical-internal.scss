@@ -1,0 +1,142 @@
+@import "_mixins/font-face";
+@import "vars";
+@import "utils";
+
+@include font-face("Roboto", 'Roboto Light', 'Roboto-Light', "/fonts/Roboto-Light", $font-weight-light); 
+@include font-face("Roboto", 'Roboto Medium', 'Roboto-Medium', "/fonts/Roboto-Medium", $font-weight-medium); 
+
+@include font-face("Roboto", 'Roboto Bold', 'Roboto-Bold', "/fonts/Roboto-Bold", $font-weight-bold); 
+@include font-face("Open Sans", 'Open Sans SemiBold', 'OpenSans-SemiBold', "/fonts/OpenSans-SemiBold", $font-weight-semibold); 
+@include font-face("Open Sans", 'Open Sans Regular', 'OpenSans-Regular', "/fonts/OpenSans-Regular", $font-weight-regular); 
+@include font-face("Roboto", "Roboto", "Roboto-Regular", "/fonts/Roboto-Regular", $font-weight-regular); // ?
+@include font-face("Open Sans", 'Open Sans Light', 'OpenSans-Light', "/fonts/OpenSans-Light", $font-weight-light); // -
+
+
+h1, h2, h3, p, ul li span, ul li div {
+	font-family: $font-family-sans-serif;
+	font-family: 'Roboto';
+}
+ 
+h1 {
+	font-size: px2rem(32);
+}
+
+h2 {
+	font-weight: 400;
+	font-size: px2rem(24);
+	color: $color-headers;
+}
+
+h3 {
+	font-size: 0.727rem;
+	color:black;
+}
+
+h1, h3, section p {
+	font-weight: $font-weight-light;
+}
+
+.oklist .item {
+	font-weight: $font-weight-light;
+}
+
+.ringlist .item {
+	font-weight: $font-weight-light;
+}
+
+h1, section p, .oklist .item, .ringlist .item {
+	color: $color-text;
+}
+
+section p {
+	font-size: .636rem;
+}
+
+.navbar-brand .svg {
+	height: 2.7rem;
+	margin: 0;
+}
+ 
+.breadcrumb {
+	display: flex;
+	flex-flow: row wrap;
+	padding: 0.75rem 1rem 0 1rem;
+    list-style: none;
+	background: none;
+	justify-content: flex-end;
+	font-family: $font-family-sans-serif;
+	font-weight: $navbar-font-weight;
+	margin-bottom: 0;
+}
+
+.contentHead .breadcrumb-item {
+    font-size: 0.5rem;
+}
+.breadcrumb-item.aslink {
+    margin-right: 0.682rem;
+}
+      
+.contentHead .brc .breadcrumb-item.aslink a .wr {
+	@include setup-link-active();
+}
+
+.logo-cont.dfloat {
+   	.s-service-integration {
+   		fill: $color-service-integration;
+   	}
+   	.s-service-shipping-start {
+   		fill: $color-service-shipping;
+   	}
+   	.s-service-repair {
+   		fill: $color-service-repair;
+	}
+	.s-service-modernization {
+		fill: $color-service-modernization;
+	}
+	.svg {
+		margin-right: 0;
+		width: 0em;
+		height: 0em;
+		display: block; 
+	}
+	.wr-1 {
+		float: left;
+		margin-right: 1.2em;
+	}
+} 
+.internal-body .svg {
+	width: 0;
+	height: 0;
+}
+
+.internal-body ul li {
+	font-size: 0.636rem;
+	padding-bottom: px2rem(5);
+}
+
+.oklist, .ringlist {
+	list-style-type: none;
+	.ringitem {
+        font-family: $font-family-sans-serif;
+        font-weight: 300;
+		color: $color-text;
+	}
+}
+
+.internal-body strong {
+	font-family: $font-family-sans-serif;
+	font-weight: 400;
+	// font-size: 1rem;
+	color: $color-headers;
+}
+
+.descr {
+	.li-cover {
+		display: none;
+	}
+}
+
+.contentHead .navbar {
+	display: flex;
+	flex-flow: row nowrap;
+}

@@ -1,0 +1,1088 @@
+@use "sass:math";
+// w 316
+// h 260 - фотография
+// h 500 - элемент
+// отступ секции - 100
+
+@import "../../../_includes/pages/index/protfolio-main-noscript";
+@import "../../../_mixins/inline-svg";
+
+$portfolio-main-textinfo-header-fontsize: 24;
+$portfolio-main-textinfo-descr-fontsize: 12; // 0.77
+$portfolio-main-textinfo-header-coeff: 0.77;
+$portfolio-main-card-xs-height: 480;
+$portfolio-main-card-md-height: 470;
+$portfolio-main-card-xl-height: 590; 
+$portfolio-main-card-xs-mobile-height: 240;
+
+$portfolio-main-grid-card-height-XXS: 490px; // iphone X (375), 414 etc - уменьшенная высота карточек на md, отображение на sm 1й карточки
+$portfolio-main-grid-card-height-XS: 499px; // нормальная высота карточек на md, отображение на sm 1й карточки 
+$portfolio-main-grid-card-height-SM: 500px; // нормальная высота карточек на sm и md, отображение на sm 2х карточек 
+
+
+// @mixin portfolio-main-owl-show-nav($ext: ".not-on-mobile") 
+@mixin portfolio-main-owl-show-nav() {
+    .portfolio-carousel-container .owl-carousel .owl-nav {
+            display: inherit; // на xs
+    }
+}
+
+@mixin portfolio-main-owl-show-nav-on-mobile() {
+    .portfolio-carousel-container .owl-carousel .owl-nav {
+        display: inherit; // на xs
+    }
+}
+
+@mixin portfolio-main-owl-hide-nav-on-mobile() {
+    .portfolio-carousel-container .owl-carousel .owl-nav {
+        display: none; // на xs
+    }
+}
+@mixin portfolio-main-setup-portfolio-section-proportions-internal(
+    $h: false, $texinfo-w: false, $texinfo-padding: false) 
+{
+    .textinfo { 
+        @if $h {
+            height: $h; 
+        }
+        @if $texinfo-w {
+            width: $texinfo-w;
+        }
+        @if $texinfo-padding {
+            padding: $texinfo-padding;
+        }
+    }
+    .work-images { 
+        @if $h {
+            height: 100% - $h; 
+        }
+        @if $texinfo-w {
+            width: $texinfo-w;
+        }
+    }
+}
+
+@mixin portfolio-main-setup-portfolio-section-proportions($h: false, $texinfo-w: false, $texinfo-padding: false) {
+    .portfolio-carousel-container .portfolio-item {
+        @include portfolio-main-setup-portfolio-section-proportions-internal(
+            $h: $h, $texinfo-w: $texinfo-w, $texinfo-padding: $texinfo-padding)
+    }
+}
+
+@mixin portfolio-main-owl-setup-navigation($vb, $leftimg, $rightimg, $w: 2, $selector: ".owl-carousel .owl-nav button", $selector-prev: '.owl-prev', $selector-next: '.owl-next',
+                                           $color: $color-service-complex-text) {
+    $c: $color;
+    #{$selector}#{$selector-prev} {
+        outline: none;
+
+        background: inline-svg-uri(
+            $viewbox: $vb, /*   [  1] [ 2] [ 3]*/
+            $code: '<polyline points="#{$leftimg}" fill="none" stroke="#{$c}" stroke-miterlimit="10" stroke-width="#{$w}"/>'
+        ) 50% 50% no-repeat;
+    }
+    #{$selector}#{$selector-next} {
+        outline: none;
+
+        background: inline-svg-uri(
+            $viewbox: $vb, /*   [  1] [ 2] [ 3]*/
+            $code: '<polyline points="#{$rightimg}" fill="none" stroke="#{$c}" stroke-miterlimit="10" stroke-width="#{$w}"/>'
+        ) 50% 50% no-repeat;
+    }
+}
+
+@mixin portfolio-main-owl-small-nav-setup($selector: ".owl-carousel .owl-nav button", $selector-prev: '.owl-prev', $selector-next: '.owl-next', $color: $color-service-complex-text) {
+    @include portfolio-main-owl-setup-navigation(
+        $vb:        0 0 11 60,
+        $leftimg:  10 59 1 30 10 0,
+        $rightimg:  1 59 10 30 1 0, 
+        $selector: $selector, $selector-prev: $selector-prev, $selector-next: $selector-next, $color: $color);
+}
+
+@mixin portfolio-main-owl-big-nav-setup($selector: ".owl-carousel .owl-nav button", $selector-prev: '.owl-prev', $selector-next: '.owl-next', $color: $color-service-complex-text) {
+    @include portfolio-main-owl-setup-navigation(
+        $vb: 0 0 25 60,
+        $leftimg: 24 59 1 30 24 0,
+        $rightimg: 1 59 24 30 1 0,
+        $selector: $selector, $selector-prev: $selector-prev, $selector-next: $selector-next, $color: $color);
+}
+
+@mixin portfolio-main-owl-naw-setup($voff-src: false, $car-mh: false, $left: 0, $right: 0) {
+    .owl-carousel .owl-nav button.owl-prev {
+        left: px2rem($left);
+    }
+    .owl-carousel .owl-nav button.owl-next {
+        right: px2rem($right);
+    }
+    @if $voff-src {
+        #portfolioCarousel {
+            $voff: $standard-margin-val-px + $voff-src;
+            padding-left: px2rem($voff);
+            padding-right: px2rem($voff);
+            @if $car-mh {
+                margin-left: $car-mh;
+                margin-right: $car-mh;
+            }
+        }
+    }
+} // end of @mixin portfolio-main-owl-naw-setup($voff-src, $car-mh: false, $left: 0, $right: 0)
+
+
+@function portfolio-main-get-scale-coeff($scale-coeff) {
+    @if $scale-coeff {
+        @return $scale-coeff;
+    }
+    @return $portfolio-main-textinfo-header-coeff;
+}
+
+@function portfolio-main-get-line-padding($off-h, $line-padding) {
+    @if $line-padding {
+        @return $line-padding;
+    }
+    @return math.div($portfolio-main-textinfo-header-fontsize + $off-h, 2);
+}
+
+@mixin portfolio-main-setup-card-fz($off-h: false, $off-d: false, 
+                     $pt: false, $pb: false, $year-m: false,
+                     $coeff-year: false, $coeff-mtype: false,
+                     $fw-year: false, $fw-mtype: false, $year-p: false, $line-padding: false) 
+{ 
+    .textinfo {
+        @if $pt {
+            padding-top: px2rem($pt);
+        }
+        @if $pb {
+            padding-bottom: px2rem($pb);
+        }
+        $fz-new: $portfolio-main-textinfo-header-fontsize + $off-h;
+        .head {
+            .row1 {
+                a {
+                   color: $color-headers;
+                }
+                @if $off-h {
+                    .head-title {
+                        font-size: px2rem($fz-new);
+                        a {
+                            text-decoration: none;
+                        }
+                        .mhead, .title {
+                            font-size: px2rem($fz-new);
+                        }
+                    }
+                }
+                @if $off-h or $year-m or $fw-year {
+                    .year {
+                        @if $off-h { font-size: px2rem($fz-new * portfolio-main-get-scale-coeff($coeff-year)); }
+                        @if $year-m  { margin: $year-m; }
+                        @if $year-p  { padding: $year-p; }
+                        @if $fw-year { font-weight: $fw-year; }
+                    }
+                }
+            }
+            .mtype {
+                @if $off-h {
+                    font-size: px2rem($fz-new * portfolio-main-get-scale-coeff($coeff-mtype));
+                }
+                @if $fw-mtype { font-weight: $fw-mtype; }
+            }
+            @if $off-h {
+                padding-bottom: px2rem(portfolio-main-get-line-padding($off-h, $line-padding));
+            }
+        }
+        .descr {
+            @if $off-h {
+                padding-top: px2rem(portfolio-main-get-line-padding($off-h, $line-padding));
+            }
+            @if $off-d {
+                font-size: px2rem($portfolio-main-textinfo-descr-fontsize + $off-d);
+            }
+        }
+        @content;
+    }
+} // end of @mixin portfolio-main-setup-card-fz
+
+
+@mixin portfolio-main-setup-card-fz-main($off-h: false, $off-d: false, 
+    $pt: false, $pb: false, $year-m: false,
+    $coeff-year: false, $coeff-mtype: false,
+    $fw-year: false, $fw-mtype: false, $year-p: false, $line-padding: false) 
+{ 
+    .portfolio-carousel-container {
+        .portfolio-item {
+            @include portfolio-main-setup-card-fz(
+                $off-h: $off-h,
+                $off-d: $off-d,
+                $pt: $pt,
+                $pb: $pb,
+                $year-m: $year-m,
+                $coeff-year: $coeff-year,
+                $coeff-mtype: $coeff-mtype,
+                $fw-year: $fw-year,
+                $fw-mtype: $fw-mtype,
+                $year-p: $year-p, 
+                $line-padding: $line-padding);
+            @content;
+        }
+    }
+}
+
+@mixin portfolio-main-setup-read-more-all($breakpoint) {
+    @if $breakpoint == 'xs' {
+        .show-more-all { font-size: px2rem(16); }
+        .show-more-all-wrapper {
+            display: none;
+            margin-top: 2em;
+        }
+    }
+    @if $breakpoint == 'md' {
+         .show-more-all { font-size: px2rem(18); }
+        @media (max-height: 499px)  {
+            .show-more-all-wrapper-1 .show-more-all-wrapper {
+                display: none;
+            }
+        }
+        .show-more-all-wrapper {
+            display: block;
+            margin-top: .5em;
+        }
+    }
+    @if $breakpoint == 'lg' {
+        @media (max-height: 499px)  {
+            .show-more-all-wrapper-1 .show-more-all-wrapper {
+                display: block;
+            }
+        }
+         .show-more-all { font-size: px2rem(19); }
+    }
+    @else if $breakpoint == 'xl' {
+         .show-more-all { font-size: px2rem(21); }
+    }
+}
+
+@mixin portfolio-main-setup-read-more($fw: false, $fz: false, $padding: false) {
+    @if $fw or $fz or $padding {
+        .portfolio-item {
+            .read-more-btn {
+                @if $fw {
+                    font-weight: $fw;
+                }
+                @if $fz {
+                    font-size: px2rem($fz);
+                }
+                @if $padding {
+                    padding: $padding;
+                }
+            }
+            @content;
+        } 
+    }
+}
+
+
+.portfolio-section { 
+    overflow: visible;
+    ul {
+        display: flex;
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        li {
+            margin: 0;
+            padding: 0;
+        }
+    }
+    .owl-nav {
+        display: none; // на xs
+    }
+    @include portfolio-main-owl-small-nav-setup();
+
+    .owl-dots {
+        position: absolute;
+        margin-left: auto;
+        margin-right: auto;
+        left: 0;
+        right: 0;
+    }
+
+    .portfolio-carousel-container {
+        margin: px2rem(-30) // top
+                px2rem(-$standard-margin-val-px) // right 
+                0 // bottom
+                px2rem(-$standard-margin-val-px); // left 
+    }
+
+    .portfolio-carousel-container  {
+        .item {
+            margin: px2rem(30) px2rem($standard-margin-val-px);
+            overflow: visible;
+            box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.2);
+            // background: $color-white;
+            z-index: 1005;
+            .portfolio-item {
+            //     background: $color-white;
+            }
+            &::before {
+                content: '';
+                position: absolute;
+                left: px2rem(30);
+                right: px2rem(30);
+                bottom: px2rem(19);
+                height: px2rem(12);
+                z-index: 0;
+                display: block;
+                // background-color: #fff;
+                box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.1);
+            }
+
+        }
+    } // end of #portfolioCarousel .owl-item
+
+    $height-1: 67%;
+    $width-1: 60%;
+    .portfolio-item {
+        display: flex;
+        width: 100%;
+        height: px2rem($portfolio-main-card-xs-height);
+
+        overflow: hidden;
+        flex-direction: column;
+        background: $color-white;
+        z-index: 1009;
+
+        .textinfo {
+            z-index: 1010;
+            background: $color-white;
+            // justify-content: space-between;
+
+            order: 2;
+            $fz: $portfolio-main-textinfo-header-fontsize; // xl - 26
+            $padding-lrb: $fz - 6;
+            padding: px2rem(16)  // top 
+                     px2rem($fz)  // right
+                     px2rem(10)  // bottom 
+                     px2rem($fz);  // left 
+            position: relative;
+            .head {
+                width: 100%;
+                display: block;
+                align-self: flex-start;
+                .row1 {
+                    display: flex;
+                    flex-flow:  row nowrap;
+                    align-items: baseline;
+                    .head-title {
+                        flex: 1;
+                        display: inline;
+                        .mhead { 
+                            font-weight: $header2-font-weight;
+                        }
+                    }
+                    .year {
+                        padding: px2rem(2) px2rem(0);
+                        align-self: flex-start;
+                        text-align: right;
+                        color: $color-portfolio-year;
+                        right: px2rem($standard-margin-val-px*9);
+                    }
+                }
+                .mtype {
+                    padding-top: 0.5em;
+                    display: block;
+                    color: $color-portfolio-year;
+                }
+                padding-bottom: px2rem(math.div($padding-lrb, 2.0));
+                margin: 0;
+                border-bottom: 1px solid $portfolio-border-color;
+            }
+            .descr {
+                position: relative;
+                align-self: flex-start;
+                margin-bottom: 0;
+                padding-top: px2rem(math.div($padding-lrb, 2.0));
+                font-family: 'Roboto';
+                font-size: px2rem($portfolio-main-textinfo-descr-fontsize);
+                line-height: 1.5;
+            }
+        } // end of .textinfo 
+
+        .img-main, .img-1, .img-2, .img-3, .img-4 {
+            box-shadow: px2rem(-3) px2rem(3) px2rem(6) rgba(0,0,0,0.6);
+            // box-shadow: px2rem(-3) px2rem(3) px2rem(6) rgba(255,0,0,0.6);
+        }
+        .img-23 {
+            display: flex;
+        }
+
+
+        .work-images {
+            z-index: 1010;
+            background: $color-white;
+
+            display: flex;
+            order: 1;
+            font-size: 0;
+            overflow: hidden;
+            img {
+                height: 100%;
+                width: 100%;
+                object-fit: cover;
+            }
+            img:hover {
+                opacity: 0.7;
+                filter: alpha(opacity=70); /* For IE8 and earlier */
+                cursor: pointer;
+            }
+            .img-main {
+                object-fit: cover;
+                height: 100%;
+                width: $width-1;
+                z-index: 1011;
+            }    
+            .img-123 {
+                width: 100% - $width-1;
+                height: 100%;
+                z-index: 1012;
+                .img-1 {
+                    height: $height-1;
+                    width: 100%;
+                    display: block;
+                }
+                .img-23 {
+                    width: 100%;
+                    .img-2, .img-3 {
+                        width: 50%;
+                    }
+                }
+            } 
+        } // end of .work-images 
+        .work-images.horisontal-maket {
+            width: 100%;
+            display: block;
+            .img-01 {
+                height: $height-1;
+                width: 100%;
+                display: flex;
+                .img-main {
+                    width: 60%;
+                }
+                .img-main, .img-1 {
+                    height: 100%;
+                }
+                .img-1 {
+                    width: 40%;
+                    z-index: 1011;
+                }
+                &.horiz-2 {
+                    .img-main {
+                        width: 67%;
+                        // margin-left: -10px;
+                    }
+                    .img-1 {
+                        width: 33%;
+                    }
+                }
+            }
+            .img-234 {
+                width: 100%;
+                height: 100%-$height-1;
+                display: flex;
+                .img-2, .img-3, .img-4 {
+                    width: 33.334%;
+                    height: 100%;
+                }
+            }
+        } // end of .work-images.horisontal-maket
+        .read-more {
+            position: absolute;
+            padding: 0;
+            margin: 0;
+            bottom: px2rem(15);
+            width: 87%;
+        }
+        .read-more-btn {
+            width: 100%;
+            background-color: $color-read-more;
+            border-radius: 0;
+            border: none !important;
+            font-family: 'Roboto';
+            outline: none !important;
+        }
+	    .read-more-btn:focus, .read-more-btn:active {
+	        outline: none !important;
+	        box-shadow: none !important;
+            border: none !important;
+            background-color: $color-headers;
+        }
+
+    } // end of .portfolio-item 
+    @include portfolio-main-setup-read-more($fw: $font-weight-semibold, $fz: 16, $padding: px2rem(6) px2rem(35));
+    @include portfolio-main-setup-card-fz-main(
+        $off-h: 0, 
+        $off-d: 0, 
+        $coeff-year: math.div($portfolio-main-textinfo-header-coeff, 1.4),
+        $coeff-mtype: math.div($portfolio-main-textinfo-header-coeff, 1.4),
+        $fw-year: $font-weight-bold, 
+        $fw-mtype: $font-weight-regular); 
+
+    @include portfolio-main-setup-portfolio-section-proportions($h: 51%);
+
+    .owl-prev, .owl-next {
+        position: absolute;
+        top: 35%; 
+        width: px2rem(25);
+        height: px2rem(60);
+        margin-top: px2rem(-40);
+        cursor: pointer;
+        user-select: none;
+    }
+    #portfolioCarousel {
+        .owl-item {
+            padding: px2rem(30) px2rem($standard-margin-val-px);
+            .item {
+                &::before {
+                    left: px2rem($standard-margin-val-px * 2);
+                    right: px2rem($standard-margin-val-px * 2);
+                }
+            }
+        }
+    }
+    .show-more-all {
+        font-family: 'Roboto';
+        margin: 0;
+        padding: 0;
+        border-radius: 0;
+        text-decoration: none !important;
+        p {
+            margin: 0;
+            .wshow, .whide {
+		        border-bottom: 1px solid $underline-color;
+                font-weight: 400;
+            }
+            .down, .up {
+                margin-left: 0.5em;
+                font-weight: 900;
+            }
+        }
+        color: $color-link;
+		display: inline;
+    }
+
+    .show-more-all-wrapper .showhide {
+        display: flex;
+        flex-flow: row nowrap;
+        .wshow { display: block }
+        .whide { display: none; }
+        .down, .up { 
+            width: 1em;
+            height: 1em;
+            margin-left: .7em;
+            display: block; 
+            position: relative; 
+        }
+        .down { display: block; }
+        .up { display: none; }
+    }
+
+    $viewbox: 0 0 30 15;
+    .show-more-all .down::after, .show-more-all .up::after {
+        content: "";
+        position: absolute;
+        top: .4em;
+        left: 0;
+        display: block;
+        width: 1em;
+        height: 1em;
+        outline: none;
+        /*         X1 Y1  X2  Y2   X3  Y3  */ 
+        $points:  0.5 0.5 15 14.5 29.5 0.5;
+        $w: 1.5;
+        $c: $color-headers;
+
+        background: inline-svg-uri(
+            $viewbox: $viewbox, 
+            $code: '<polyline points="#{$points}" fill="none" stroke="#{$c}" stroke-miterlimit="10" stroke-width="#{$w}"/>'
+        ) 50% 50% no-repeat;
+    };
+    .show-more-all .up::after {
+        top: 0.25em;
+        /*         X1 Y1   X2  Y2  X3  Y3  */ 
+        $points:  0.5 14.5 15 0.5 29.5 14.5;
+        $w: 1.5;
+        $c: $color-headers;
+
+        background: inline-svg-uri(
+            $viewbox: $viewbox, 
+            $code: '<polyline points="#{$points}" fill="none" stroke="#{$c}" stroke-miterlimit="10" stroke-width="#{$w}"/>'
+        ) 50% 50% no-repeat;
+
+    }
+
+} // end of .portfolio
+ 
+@include portfolio-main-noscript($expadned-tag: ".expadned-carousel") {
+    .show-more-all-wrapper p {
+        .wshow { display: none; }
+        .whide { display: block; } 
+        .down { display: none; }
+        .up { display: block; }
+    }
+}
+
+// Настройка просмотра lightbox gallery 
+.lg-outer .lg {
+    .lg-inner .lg-item img.lg-image {
+        max-width: 80vw !important;
+        max-height: 100vh !important;
+    }
+    .lg-toolbar {
+        #lg-actual-size, #lg-zoom-in, #lg-zoom-out { display: none; }
+        opacity: 0.8
+    }
+    .lg-actions {
+        .lg-prev {
+            left: 0px;
+        }
+        .lg-next {
+            right: 0px;
+        }
+    }
+    .lg-hide-items-important {
+        opacity: 0 !important;
+        display: none !important;
+    }
+}
+
+.lg-sub-html {
+    p {
+        font-family: 'Roboto';
+        font-weight: 400;
+    }
+}
+
+
+
+@mixin portfolio-main-media($breakpoint) {
+    $max-width: 767px;
+    @if $breakpoint == 'xs' {
+		    .owl-theme .owl-dots .owl-dot span {
+				background-color: transparentize($color-how-we-works-secondary, 0.5);
+            }
+
+            .portfolio-section { 
+            @include portfolio-main-setup-read-more-all('xs');
+            @media (min-width: 370px) {
+                @include portfolio-main-setup-portfolio-section-proportions($h: 48%);
+            }
+    
+            @media (min-width: 450px) {
+                @include portfolio-main-setup-portfolio-section-proportions($h: 51%);
+                @include portfolio-main-owl-show-nav();
+                $v_sm: -6;
+                @include portfolio-main-owl-naw-setup($voff-src: -5, $left: $v_sm, $right: $v_sm);
+            }
+            @media (min-width: 490px) {
+                @include portfolio-main-setup-portfolio-section-proportions($h: 48%);
+            }
+            .owl-dots {
+                bottom: px2rem(-15);
+            }
+
+            @media (min-width: 412) {
+              .lg-outer .lg {
+                  .lg-toolbar {
+                      #lg-actual-size, #lg-zoom-in, #lg-zoom-out { display: inherit; }
+                  }
+              }
+            }
+            @media (max-height: $portfolio-main-grid-card-height-XS) and (max-width: $max-width) {
+                @include portfolio-main-owl-hide-nav-on-mobile();
+                #portfolioCarousel {
+                    padding-left: 0;
+                    padding-right: 0;
+                }
+    
+                @include portfolio-main-setup-card-fz-main($off-h: -11, $off-d: -3, $pt: 16, $pb: 16, 
+                                            $year-m: 0,
+                                            $year-p: px2rem(6) 0 0 0,
+                                            $coeff-year: 0.70,
+                                            $coeff-mtype: 0.70,
+                                            $fw-year: $font-weight-black, 
+                                            $fw-mtype: $font-weight-semibold,
+                                            $line-padding: 10) 
+                {
+                    height: px2rem($portfolio-main-card-xs-mobile-height - 25);
+                    $app: 4;
+                    $fz-new: $portfolio-main-textinfo-header-fontsize + $app;
+                    flex-direction: row;
+                    .textinfo {
+                        height: 100%;
+                        width: 45%;
+                    }
+    
+                    .work-images {
+                        height: 100%;
+                        width: 55%;
+                    }
+                }
+    
+                @include portfolio-main-setup-read-more($fw: $font-weight-black, $fz: 12, $padding: px2rem(4) px2rem(35)) {
+                    .read-more {
+                        width: 31.4%;
+                        bottom: px2rem(7); // 45
+                        padding-bottom: 0;
+                    }
+                }
+    
+                .owl-dots {
+                    bottom: px2rem(-30);
+                }
+            }
+            @media (max-height: $portfolio-main-grid-card-height-XS) and (max-width: 539px) {
+    
+                .portfolio-carousel-container .portfolio-item {
+                    $xxs-w: 45%;
+                    .textinfo {
+                        width: 100% - $xxs-w;
+                        padding: px2rem(10) px2rem(10) px2rem(15) px2rem(15);
+                    }
+                    .work-images { 
+                        width: $xxs-w;
+                        .img-main {
+                            width: 100%;
+                        }
+                        .img-123 { display: none; } 
+                    } // end of .work-images 
+                    .work-images.horisontal-maket {
+                        .img-01 .img-1 { display: none }
+                        .img-234 { 
+                            .img-2 { width: 50%; }
+                            .img-3 { width: 50%; }
+                            .img-4 { display: none } 
+                        }
+                        .img-01.horiz-2 {
+                            .img-main {
+                                width: 100%;
+                            }
+                            .img-1 {
+                                display: none;
+                            }
+                        }
+                    } // end of .work-images.horisontal-maket
+                }
+                @media (min-width: 390px) {
+                    @include portfolio-main-setup-card-fz-main($off-h: -7, $off-d: -2,
+                                            $year-p: px2rem(2) 0 0 0,
+                                            $coeff-year: 0.60,
+                                            $coeff-mtype: 0.70,
+                                            $fw-mtype: $font-weight-medium);
+                }
+                @media (min-width: 480px) {
+                    @include portfolio-main-setup-card-fz-main($off-h: -4, $off-d: -1, 
+                                            $coeff-year: 0.60,
+                                            $coeff-mtype: 0.60);
+                }
+                @media (min-width: 490px) {
+                    @include portfolio-main-setup-card-fz-main($off-h: -4, $off-d: 0, 
+                                            $coeff-year: 0.60,
+                                            $coeff-mtype: 0.60);
+                }
+            }
+    
+            @media (max-height: $portfolio-main-grid-card-height-XS) and (max-width: $max-width) {
+                @media (min-width: 540px) {
+                    @include portfolio-main-setup-card-fz-main($off-h: -6, $off-d: -1, 
+                                            $year-p: px2rem(2) 0 0 0,
+                                            $coeff-year: 0.70,
+                                            $coeff-mtype: 0.65,
+                                            $fw-mtype: $font-weight-medium) 
+                    {
+                        .blabla {
+                            width: 100%;
+    
+                        }
+                        @include portfolio-main-setup-portfolio-section-proportions-internal(
+                                $texinfo-w: 50%, 
+                                $texinfo-padding: px2rem(12)  // top 
+                                                  px2rem(10)  // right
+                                                  px2rem(10)  // bottom 
+                                                  px2rem(15)  // left 
+                            );
+                        .work-images:not(.horisontal-maket) {
+                            $img-w: 55%;
+                            .img-main {
+                                width: $img-w; 
+                            }
+                            .img-123 {
+                                width: 100% - $img-w; 
+                            }
+                        }
+                    }
+    
+                    @include portfolio-main-owl-show-nav-on-mobile();
+                    @include portfolio-main-owl-naw-setup($voff-src: 0, $left: 1, $right: -3);
+    
+                    .portfolio-item { 
+                        .textinfo .head .row1 .year {
+                            margin-bottom: px2rem(1);
+                        }
+                    }
+                } // end of @media (min-width: 460px)
+                @media (min-width: 570px) {
+                    @include portfolio-main-setup-card-fz-main($off-h: -6, $off-d: 0, 
+                                            $coeff-year: 0.70,
+                                            $coeff-mtype: 0.67) 
+                    {
+                        height: px2rem($portfolio-main-card-xs-mobile-height - 15);
+                    }
+                    @include portfolio-main-setup-read-more($fw: $font-weight-semibold, $fz: 16, $padding: px2rem(6) px2rem(35));
+                }
+            } // end of @media (max-height: $portfolio-main-grid-card-height-XS) and (max-width: $max-width)
+            @media (min-height: $portfolio-main-grid-card-height-SM) { 
+                @media (min-width: 500px) {
+                    @include portfolio-main-setup-card-fz-main($off-h: -3, $off-d: 0, 
+                                            $coeff-year: 0.66,
+                                            $coeff-mtype: 0.60);
+                }
+                @media (min-width: 530px) {
+                    @include portfolio-main-setup-card-fz-main($off-h: -2, $off-d: 1, 
+                                            $coeff-year: 0.66,
+                                            $coeff-mtype: 0.60);
+                }
+                @media (min-width: 560px) {
+                    @include portfolio-main-setup-card-fz-main($off-h: -2, $off-d: 1, 
+                                            $coeff-year: 0.66,
+                                            $year-p: px2rem(1) 0 0 0,
+                                            $coeff-mtype: 0.60);
+                }
+                @media (min-width: 572px) {
+                    @include portfolio-main-setup-card-fz-main($off-h: -6, $off-d: 0, 
+                                            $coeff-year: 0.66,
+                                            $year-p: px2rem(1) 0 0 0,
+                                            $coeff-mtype: 0.60);
+                }
+                @media (min-width: 575px) {
+                    @include portfolio-main-setup-card-fz-main($off-h: -2, $off-d: 1, 
+                                            $coeff-year: 0.66,
+                                            $year-p: px2rem(1) 0 0 0,
+                                            $coeff-mtype: 0.60);
+                }
+            } // end of @media (min-height: $portfolio-main-grid-card-height-SM) 
+        }
+    } // end of @if $breakpoint == 'xs'
+    @else if $breakpoint == 'sm' {
+            @media (max-height: 499px) and (max-width: 767px) {
+                .portfolio-section { 
+                    @include portfolio-main-setup-read-more-all('sm-xs'); 
+                }
+            }
+            .portfolio-section { 
+                @include media-breakpoint-up('sm') {
+                    @include portfolio-main-setup-read-more-all('sm-sm'); 
+                }
+
+            @media (max-height: $portfolio-main-grid-card-height-XS) and (max-width: $max-width) {
+                @media (min-width: 600px) {
+                    @include portfolio-main-setup-card-fz-main($off-h: -4, $off-d: 0, 
+                                            $coeff-year: 0.65,
+                                            $coeff-mtype: 0.60,
+                                            $fw-mtype: $font-weight-regular) 
+                    {
+                        .textinfo {
+                            padding: px2rem(15)  // top 
+                                     px2rem(15)  // right
+                                     px2rem(15)  // bottom 
+                                     px2rem(16);  // left 
+                        }
+                        height: px2rem($portfolio-main-card-xs-mobile-height);
+                    }
+                }
+                @media (min-width: 700px) {
+                    @include portfolio-main-setup-card-fz-main($off-h: -2, $off-d: 1, 
+                                            $coeff-year: 0.65,
+                                            $coeff-mtype: 0.60);
+                }
+            } // end of @media (max-height: $portfolio-main-grid-card-height-XS)
+        
+            @media (min-height: $portfolio-main-grid-card-height-SM) { 
+                @media (min-width: 575px) {
+                    @include portfolio-main-setup-portfolio-section-proportions($h: 60%);
+                }
+            }
+        }
+        @include media-breakpoint-up(sm) {
+            .lg-outer .lg {
+                .lg-toolbar {
+                    #lg-actual-size, #lg-zoom-in, #lg-zoom-out { display: inherit; }
+                }
+                .lg-actions {
+                    .lg-prev {
+                        height: 3rem;
+                        width: 1.7rem;
+                    }
+                    .lg-next {
+                        height: 3rem;
+                        width: 1.7rem;
+                    }
+                    .lg-next::before {
+                        content: '';
+                    }
+                    .lg-prev::after {
+                        content: '';
+                    }
+                }
+                @include portfolio-main-owl-big-nav-setup(
+                    $selector: ".lg-actions", $selector-prev: ' .lg-prev', $selector-next: ' .lg-next', $color: white);
+            }
+        }
+
+    } // end of @else if $breakpoint == 'sm' 
+    @else if $breakpoint == 'md' {
+            .portfolio-section { 
+
+            @media (min-height: $portfolio-main-grid-card-height-SM) { 
+                @media (min-width: 768px) {
+                    @include portfolio-main-setup-portfolio-section-proportions($h: 67%);
+                    @include portfolio-main-owl-show-nav();
+                    @include portfolio-main-setup-card-fz-main($off-h: -5, $off-d: 1.5, 
+                                            $year-p: px2rem(2) 0 0 0,
+                                            $coeff-year: 0.66,
+                                            $coeff-mtype: 0.7,
+                                            $line-padding: 15);
+                } // end of @include media-breakpoint-up(sm) 
+                @media (min-width: 630px) {
+                    @include portfolio-main-setup-card-fz-main($off-h: -1, $off-d: 2,
+                                            $year-p: px2rem(2) 0 0 0,
+                                            $coeff-year: 0.55,
+                                            $coeff-mtype: 0.63);
+                }
+    
+                @media (min-width: 650px) {
+                    @include portfolio-main-setup-card-fz-main($off-h: -2, $off-d: 0.9,
+                                            $year-p: px2rem(2) 0 0 0,
+                                            $coeff-year: 0.55,
+                                            $coeff-mtype: 0.6);
+                    @include portfolio-main-setup-portfolio-section-proportions($h: 58%);
+                }
+            } // end of @media (min-height: $portfolio-main-grid-card-height-SM) 
+         
+            @include media-breakpoint-up(md) {
+                @include portfolio-main-setup-read-more-all('md');
+
+                @include portfolio-main-owl-show-nav();
+                $v: -16;
+                @include portfolio-main-owl-naw-setup($voff-src: 0, $left: $v, $right: $v);
+                @include portfolio-main-owl-big-nav-setup();
+                @include portfolio-main-setup-portfolio-section-proportions($h: 55%);
+                @include portfolio-main-setup-portfolio-section-proportions($h: 55%);
+    
+                @include portfolio-main-setup-card-fz-main($off-h: -1, $off-d: 1,
+                                            $year-p: px2rem(0) 0 0 0,
+                                            $coeff-year: 0.65,
+                                            $coeff-mtype: 0.58) 
+                {
+                    height: px2rem($portfolio-main-card-md-height);
+                }
+                .owl-dots {
+                    position: relative;
+                }
+                @media (max-height: $portfolio-main-grid-card-height-XXS) {
+                    .owl-dots {
+                        position: absolute;
+                    }
+                    @include portfolio-main-setup-card-fz-main($off-h: -8, $off-d: 0,
+                                                $year-p: px2rem(5) 0 0 0,
+                                                $coeff-year: 0.75,
+                                                $coeff-mtype: 0.75) 
+                    {
+                        height: px2rem(355);
+                        @include portfolio-main-setup-portfolio-section-proportions-internal(
+                            //                            top       right     bottom     left
+                            $h: 52%, $texinfo-padding: px2rem(9) px2rem(15) px2rem(5) px2rem(15)); 
+                        .work-images:not(.horisontal-maket) {
+                            $iphone-x-img-w: 54%;
+                            .img-main {
+                                width: $iphone-x-img-w; 
+                            }
+                            .img-123 {
+                                width: 100% - $iphone-x-img-w; 
+                            }
+                        }
+                    }
+    
+                    .portfolio-carousel-container {
+                        @include portfolio-main-setup-read-more($fz: 13) {
+                            .read-more {
+                                bottom: px2rem(7);
+                            }
+                        }
+                    }
+                }
+            } // end of @include media-breakpoint-up(md)
+        }
+        @include media-breakpoint-up(md) {
+            .lg-outer .lg {
+                .lg-actions {
+                    .lg-prev {
+                        left: 20px;
+                    }
+                    .lg-next {
+                        right: 20px;
+                    }
+                }
+            }
+        }
+    } // @else if $breakpoint == 'md' 
+    @else if $breakpoint == 'lg' {
+            .portfolio-section { 
+            @include media-breakpoint-up(lg) {
+                @include portfolio-main-setup-read-more-all('lg');
+                .owl-dots {
+                    position: relative;
+                }
+                @include portfolio-main-setup-card-fz-main($off-h: -2, $off-d: 0.2,
+                                        $year-p: px2rem(6) 0 0 0,
+                                        $coeff-year: 0.65,
+                                        $coeff-mtype: 0.59) 
+                {
+                    height: px2rem($portfolio-main-card-md-height + 25);
+                }
+                @include portfolio-main-owl-naw-setup($left: -40, $right: -40);
+                .owl-prev, .owl-next {
+                    top: 36.5%; 
+                }
+                .owl-dots .owl-dot { 
+                    span {
+                        width: px2rem(10);
+                        height: px2rem(10);
+                    }
+                }
+                .portfolio-carousel-container .portfolio-item {
+                    .read-more {
+                        bottom: px2rem(15);
+                    }
+                }
+            }
+        }
+    } // end of @else if $breakpoint == 'lg'
+    @else if $breakpoint == 'xl' {
+            .portfolio-section { 
+            @include media-breakpoint-up(xl) {
+                @include portfolio-main-setup-read-more-all('xl');
+                @include portfolio-main-setup-portfolio-section-proportions($h: 54%); 
+                @include portfolio-main-setup-portfolio-section-proportions($h: 54%); 
+                @include portfolio-main-setup-card-fz-main($off-h: 3, $off-d: 3.5,
+                                        $year-p: px2rem(1) 0 0 0,
+                                        $coeff-year: 0.65,
+                                        $coeff-mtype: 0.57) 
+                {
+                    height: px2rem($portfolio-main-card-xl-height);
+                }
+                @include portfolio-main-owl-naw-setup($left: -45, $right: -45);
+                .owl-prev, .owl-next {
+                    top: 38%; 
+                }
+            } // end of @include media-breakpoint-up(xl)
+        }
+    } // end of @else if $breakpoint == 'xl'
+} // end of @mixin portfolio-main-media($breakpoint)
+

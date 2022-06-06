@@ -1,0 +1,106 @@
+@use "sass:math";
+@import "vars";
+
+section.about-company-main {
+    margin-top: 0;
+}
+
+.content-block.about-company {
+    font-family: $text-accent-family;
+    font-weight: $text-font-weight-roboto;
+
+    margin-top: px2rem(60);
+ 
+	.svg {
+		vertical-align: top !important;
+        fill: $color-list-promo-icons;
+        height: 1em;
+	}
+    ul {
+        padding: 0;
+        li {
+            position: relative;
+            display: block;
+            list-style-type: none;
+            padding-bottom: 1em;
+            .icon-our-work-text {
+				vertical-align: middle;
+                display: inline-block;
+                font-family: 'Roboto';
+                color: $color-list-promo-text;
+                font-weight: $header2-font-weight;
+            }
+            .icon-our-work-text a {
+                font-family: 'Roboto';
+                color: $color-list-promo-text;
+                font-weight: $header2-font-weight;
+            }
+        }
+        li.li-modernization {
+            margin-bottom: 0;
+        }
+    }
+    ul {
+        .li-cover {
+            width: 1.5em;
+            display: inline-block;
+			vertical-align: top;
+            .svg {
+                position: absolute;
+                top: 0;
+                left: 0;
+            }
+        }
+    }
+    ul.our-servs {
+        $fz: 1.3em;
+        .svg {
+            top: #{math.div($line-height-coeff - 1, 2.5)}em;
+            width: $fz;
+            height: $fz;
+        }
+        @include media-breakpoint-up(sm) {
+            // margin-top: #{($line-height-coeff - 1)/0.3}em;
+            $fz: 1.2em;
+            .svg { width: $fz; height: $fz; }
+        }
+        @include media-breakpoint-up(lg) {
+            // margin-top: #{($line-height-coeff - 1)/0.3}em;
+            $fz: 1.4em;
+            .svg { 
+                top: #{math.div($line-height-coeff - 1, 2.5)}em;
+                width: $fz; 
+                height: $fz; 
+            }
+        }
+    } 
+    ul.our-spec {
+        .li-cover {
+            vertical-align: top;
+        }
+        .icon-our-work-text {
+            vertical-align: top;
+        }
+        $fz: 1.2em;
+        .svg {
+            top: #{math.div($line-height-coeff - 1, 1.7)}em;
+            width: $fz;
+            height: $fz;
+        }
+        .svg.s-repair {
+            top: #{math.div($line-height-coeff - 1, 1.3)}em;
+        }
+        @include media-breakpoint-up(lg) {
+            // margin-top: #{($line-height-coeff - 1)/0.3}em;
+            $fz: 1.1em;
+            .svg { 
+                top: #{math.div($line-height-coeff - 1, 1.6)}em;
+                width: $fz; 
+                height: $fz; 
+            }
+            .svg.s-repair {
+                top: #{math.div($line-height-coeff - 1, 1.5)}em;
+            }
+        }
+    }
+}

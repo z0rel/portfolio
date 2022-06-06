@@ -1,0 +1,85 @@
+syntax = "proto3";
+package mounting_project_card;
+
+
+message ConstructionSideInfo {
+  int64 constructionId                       =  1; 
+  string code                                =  2; 
+  string family                              =  3; 
+  string underfamily                         =  4; 
+  string model                               =  5; 
+  string format                              =  6; 
+  string side                                =  7; 
+  string advertisingSide                     =  8; 
+  string size                                =  9; 
+  string sideCode                            = 10; 
+  string advertisingSideCode                 = 11; 
+  string address                             = 12; 
+  string postcode                            = 13; 
+  string district                            = 14; 
+  string city                                = 15; 
+  bool isNonRts                              = 16; 
+  string ownerTitle                          = 17; 
+  bool statusConnection                      = 18; 
+}
+
+message MountingPhoto {
+  string photo                               = 1; 
+  string photoNumber                         = 2; 
+  string photoDate                           = 3; 
+}
+
+message Design {
+  string img                                 = 1; 
+  string startedAt                           = 2; 
+  string title                               = 3; 
+}
+
+message Crew {
+  string num                                 = 1; 
+  string name                                = 2; 
+  string phone                               = 3; 
+}
+
+enum MountingRange {
+  MEDIUM = 0;
+  HIGEST = 100;
+  HIGH = 10;
+  LOW = -10;
+  LOWEST = -100;
+}
+
+message MountingTask {
+  int64 id                                   =  1; 
+  string mountingTaskTitle                   =  2;
+  MountingRange mountingRange                =  3; 
+  bool archived                              =  4; 
+  string startMounting                       =  5; 
+  string endMounting                         =  6; 
+  bool mountingDone                          =  7; 
+  bool unmountingDone                        =  8;
+  string comment                             =  9;
+  string downloadedEarly                     = 10;
+  Design mountingDesign                      = 11;
+  Design unmountingDesign                    = 12;
+  Crew crew                                  = 13;
+  repeated MountingPhoto photos              = 14;
+}
+
+message ProjectCardReservation {
+  int64 id                                   =  1; 
+  ConstructionSideInfo constructionSideInfo  =  2; 
+  string comments                            =  3; 
+  string minDateMounting                     =  4; 
+  string minDateUnmounting                   =  5; 
+  string minPhotoDate                        =  6; 
+  string minPhotoAdditionalDayDate           =  7; 
+  string minPhotoAdditionalNightDate         =  8; 
+  repeated MountingTask mountingTasks        =  9; 
+  repeated MountingTask additionalPhotoDay   = 10; 
+  repeated MountingTask additionalPhotoNight = 11; 
+}
+
+message ProjectCardReservations {
+  repeated ProjectCardReservation reservations = 1;
+}

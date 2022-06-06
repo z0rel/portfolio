@@ -1,0 +1,29 @@
+
+.appendix-slider {
+  width: calc(100% - 240px - 60px) !important;
+  right: 0;
+  @media (max-width: 1764px) { width: calc(100% - 120px - 60px) !important; }
+  @media (max-width: 1430px) { width: calc(100% - 60px - 60px) !important; }
+  @media (max-width: 1376px) { width: calc(100% - 60px) !important; }
+
+  .ant-form {
+    .date-icon {
+      position: absolute;
+      top: 3.2rem;
+      left: 1.2rem;
+      z-index: 99;
+    }
+
+    .ant-picker-large {
+      padding: 6.5px 11px 6.5px 30px;
+    }
+
+    .ant-form-item {
+      margin: 0;
+    }
+
+    .ant-form-item-label {
+      font-weight: 600;
+    }
+  }
+}

@@ -1,0 +1,336 @@
+@import "utils";
+@import "_mixins/inline-svg";
+
+$default-font: "Roboto", sans-serif;
+$color-text: #1C0F13;
+
+$font-weight-thin: 200;
+$font-weight-light: 300;
+$font-weight-regular: 400;
+$font-weight-medium: 500;
+$font-weight-semibold: 700;
+$font-weight-bold: 800;
+$font-weight-black: 900;
+$font-weight-extra-bold: 900;
+
+$line-height-coeff: 1.65;
+
+$base-font-size-val: 22;
+$base-font-size: #{$base-font-size-val}px;
+
+// Customization Bootstrap vars from "app/libs/bootstrap/scss/_variables.scss"
+$grid-gutter-width: 30px;
+$grid-columns: 12;
+$grid-breakpoints: (xs: 0, sm: 576px, md: 768px, lg: 992px, xl: 1200px);
+$container-max-widths: (sm: 540px, md: 720px, lg: 960px, xl: 1140px);
+$bp-xxs: 360px;
+ 
+$navbar-padding-x: 0;
+$gutter: $grid-gutter-width;
+
+
+$font-family-sans-serif:      -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", 'Roboto' !default;
+$font-family-monospace:       SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace !default;
+$font-family-base:            $font-family-sans-serif !default;
+$font-weight-base:            $font-weight-light !default;
+
+
+$standard-margin-val-px: 15;
+$standard-margin-val-inv: -15;
+$standard-margin: 15px;
+$standard-margin-rem: px2rem($standard-margin-val-px, 'px');
+
+$color-white: #FCFCFC;
+$color-white-gradient-end: darken(#FCFCFC, 3);
+
+$color-accent-dark-blue: #1684B1;
+$color-accent-light-blue: #4EAACF;
+$color-transparent: rgba(0,0,0,0);
+$color-service-border: #295467;
+$color-service-head: #3A5468;
+$color-list-promo-icons: #4C82A4;
+$color-list-promo-text: #12516B;
+$color-service-complex-text: #4C82A4;
+$color-menu-mobile-background: #F4F4F4;
+$color-how-we-works-secondary: #4F6D7A;
+$portfolio-border-color: #95989A;
+$color-headers: #197195;
+$color-contacts-background: #F7F9FA;
+$color-address: rgb(85,85,85);
+$color-input-borders: #B9CAD5;
+$color-how-we-works-secondary: #4F6D7A;
+$color-link: #1b86c0;
+$color-service-integration: #265369;
+$color-service-shipping: $color-service-head;
+$color-service-repair: $color-service-head;
+$color-service-modernization: $color-list-promo-icons;
+
+$accent: $color-headers;
+
+$icon-fontsize-coeff: 1.7;
+
+// $color-read-more: #5ab6f7;
+$color-read-more: $color-accent-light-blue;
+$color-portfolio-year: transparentize($color-how-we-works-secondary, 0.2);
+$color-portfolio-year: $color-headers;
+
+
+$mod-color-accent-light-blue: lighten(saturate(adjust-hue($color-accent-light-blue, 0), 30), 20);
+
+$color-accent-light-blue-list: red($mod-color-accent-light-blue),green($mod-color-accent-light-blue),blue($mod-color-accent-light-blue);
+$color-accent-dark-blue-list: red($color-accent-dark-blue),green($color-accent-dark-blue),blue($color-accent-dark-blue);
+$dropdown-menu-color: lighten(desaturate(adjust-hue($color-accent-dark-blue, 0), 15), 2);
+
+
+$dropdown-border-radius: 5px;
+$collapsed-menu-color: transparentize($color-accent-light-blue, 0.02);
+$dropdown-menu-color-real: rgba(59, 144, 177, 0.9);
+
+$marker-circle-diameter: px2rem(15, 'px');
+$marker-circle-margin: px2rem(7, 'px');
+
+$media-font-size-map: (
+    'xxs': px2rem-val(16), // max-width: 360px
+    'xs': px2rem-val(16),
+    'sm': px2rem-val(21),
+    'md': px2rem-val(21),
+    'lg': px2rem-val(21),
+    'xl': px2rem-val(21)
+);
+
+$media-font-size-map-roboto: ( // + 
+    'xxs': px2rem-val(16), // max-width: 360px
+    'xs': px2rem-val(16),
+    'sm': px2rem-val(19),
+    'md': px2rem-val(19),
+    'lg': px2rem-val(19),
+    'xl': px2rem-val(20)
+);
+
+$media-font-size-map-roboto-sub-html: ( // + 
+    'xxs': px2rem-val(13), // max-width: 360px
+    'xs': px2rem-val(13),
+    'sm': px2rem-val(16),
+    'md': px2rem-val(16),
+    'lg': px2rem-val(16),
+    'xl': px2rem-val(18)
+);
+
+$media-font-size-map-internal-lg-h4: (
+    'xxs': px2rem-val(12), // max-width: 360px
+    'xs': px2rem-val(12),
+    'sm': px2rem-val(15),
+    'md': px2rem-val(15),
+    'lg': px2rem-val(15),
+    'xl': px2rem-val(17)
+);
+
+$media-font-size-map-roboto-internal: ( // + 
+    'xxs': px2rem-val(14), // max-width: 360px
+    'xs': px2rem-val(16),
+    'sm': px2rem-val(16),
+    'md': px2rem-val(19),
+    'lg': px2rem-val(19),
+    'xl': px2rem-val(20)
+);
+
+$media-font-size-map-internal-h2: (
+    'xxs': px2rem-val(22), // max-width: 360px
+    'xs': px2rem-val(22),
+    'sm': px2rem-val(26),
+    'md': px2rem-val(28),
+    'lg': px2rem-val(32),
+    'xl': px2rem-val(32)
+);
+
+$media-font-size-map-internal-h3: (
+    'xxs': px2rem-val(16), // max-width: 360px
+    'xs': px2rem-val(17),
+    'sm': px2rem-val(17),
+    'md': px2rem-val(20),
+    'lg': px2rem-val(20),
+    'xl': px2rem-val(21)
+);
+
+$media-font-size-map-roboto-internal-subcat: ( // + 
+    'xxs': px2rem-val(14), // max-width: 360px
+    'xs': px2rem-val(14),
+    'sm': px2rem-val(14),
+    'md': px2rem-val(17),
+    'lg': px2rem-val(17),
+    'xl': px2rem-val(18)
+);
+
+$media-font-size-map-roboto-footer: ( // +
+    'xxs': px2rem-val(16), // max-width: 360px
+    'xs': px2rem-val(16),
+    'sm': px2rem-val(17),
+    'md': px2rem-val(17),
+    'lg': px2rem-val(17),
+    'xl': px2rem-val(17)
+);
+
+$media-icons-font-size-map: (
+    'xxs': px2rem-val(21), // rem, max-width: 360px
+    'xs': px2rem-val(21), // rem
+    'sm': px2rem-val(21),
+    'md': px2rem-val(21),
+    'lg': px2rem-val(21),
+    'xl': px2rem-val(21) 
+);
+
+$media-icons-font-size-map-thin: (
+    'xxs': px2rem-val(22), // rem, max-width: 360px
+    'xs': px2rem-val(22), // rem
+    'sm': px2rem-val(24),
+    'md': px2rem-val(24),
+    'lg': px2rem-val(24),
+    'xl': px2rem-val(24) 
+);
+
+$media-icons-font-size-map-semithin: (
+    'xxs': px2rem-val(21), // rem, max-width: 360px
+    'xs': px2rem-val(21), // rem
+    'sm': px2rem-val(23),
+    'md': px2rem-val(23),
+    'lg': px2rem-val(23),
+    'xl': px2rem-val(23) 
+);
+
+$media-icons-font-size-map-superthin: (
+    'xxs': px2rem-val(24), // rem, max-width: 360px
+    'xs': px2rem-val(24), // rem
+    'sm': px2rem-val(26),
+    'md': px2rem-val(26),
+    'lg': px2rem-val(26),
+    'xl': px2rem-val(26) 
+);
+
+$media-icons-font-size-map-navigation: (
+    'xxs': px2rem-val(22), // rem, max-width: 360px
+    'xs': px2rem-val(22), // rem
+    'sm': px2rem-val(24),
+    'md': px2rem-val(24),
+    'lg': px2rem-val(24),
+    'xl': px2rem-val(24) 
+);
+
+
+$li-icon-width-map: (
+    'xxs': 10%, // max-width: 360px
+    'xs': 7%,
+    'sm': 7%,
+    'md': 6%,
+    'lg': 4%,
+    'xl': 4%
+);
+
+
+
+// px
+$fz-h1: (
+	'xxxs': 25,
+	'xxs': 26,
+	'xs': 28,
+	'xs-2': 32,
+	'xs-3': 36,
+	'xs-4': 40,
+	'sm': 46,
+	'md': 46,
+	'lg': 56,
+	'xl': 56,
+);
+$fz-h2: (
+	'xxxs': 17,
+	'xxs': 17,
+	'xs': 17,
+	'sm': 20,
+	'md': 22,
+	'lg': 26,
+	'xl': 26,
+);
+
+$navbar-font-color: white;
+$navbar-font-weight: 300;
+$header-font-weight: 400;
+$header2-font-weight: 400;
+$text-font-weight: 400;
+$text-font-weight-roboto: 300;
+$text-accent-family: 'Roboto';
+$text-normal-family: 'Open Sans';
+
+$nav-link-font-not-service: 500;
+
+$nav-link-font-service: 300;
+$nav-link-font-md: 300;
+
+$footer-link-font-not-service: 500;
+$footer-link-font-service: 300;
+
+$button-font-weight: 600;
+
+$nav-brand-base-width-scale: 184; // ширина бренда px 
+$nav-brand-base-height-scale: 66; // высота бренда rem
+
+@function draw_svg_nav() {
+    $c: $color-link;
+   //             0    1     2
+   //            X   Y   X   Y   X   Y
+   $f: 'points="0.5 0.5 4.5 5.5 0.5 10.5"';
+   @return inline-svg(
+       '<svg xmlns="http://www.w3.org/2000/svg" width="5.5" height="11">' +
+       '<polyline #{$f} stroke-miterlimit="10" stroke-width="1" stroke="#{$c}" fill="none"/></svg>');
+}
+
+$breadcrumb-divider: draw_svg_nav();
+
+
+$navbar-xs-btn-width: px2rem(50);
+$navbar-xs-btn-height: px2rem(50);
+$navbar-btn-margin-top: 0;
+$navbar-btn-padding-x: px2rem(10);
+$navbar-btn-padding-y: px2rem(6);
+$z-navbar-btn: 1099;
+
+
+$underline-color: darken($color-accent-light-blue, 5); // цвет подчеркивания ссылки в футере
+
+// Настройка light-gallery 
+$backdrop-opacity: 0.7;
+$lg-toolbar-bg: $color-accent-dark-blue;
+$lg-icon-color: $color-white;
+
+$lg-path-fonts: "/fonts";
+$lg-path-images: "/img";
+// $backdrop-opacity 	1 	Gallery backdrop opacity
+$lg-toolbar-bg: $color-accent-dark-blue; //Toolbar background color
+// $lg-border-radius-base: 10px; // Base border radius for the gallery elements
+// $lg-theme-highlight  rgb(169, 7, 7)  Gallery highlight areas like progressbar active bg, thumbnails border..
+// $lg-icon-bg  rgba(0, 0, 0, 0.45)  Gallery icons background color
+// $lg-icon-color  #999  Gallery icons color
+$lg-counter-color:  $color-white;  // Gallery counter color
+// $lg-counter-font-size  16px  Gallery counter font size
+$lg-next-prev-bg: transparent; //Next prev controls background color
+// $lg-next-prev-color: lighten($color-accent-light-blue, 30);  //  Next prev controls icon color
+// $lg-next-prev-hover-color  $lg-icon-hover-color  Next prev controls icon color on hover
+// $lg-progress-bar-bg  #333  Progress bar background color
+// $lg-progress-bar-active-bg  $lg-theme-highlight  Progress bar highlight color
+// $lg-progress-bar-height  5px  Height of the progress bar
+// $zoom-transition-duration  0.3s  Image zoom animation duration..
+$lg-sub-html-bg:  rgba(0, 0, 0, 0.45);  // Sub html container background color
+$lg-sub-html-color: white; //  #EEE  Sub html color
+// $lg-thumb-toggle-bg  #0D0A0A  Thumbnail icon toggle icon background color
+// $lg-thumb-toggle-color  $lg-icon-color  Thumbnail icon toggle icon color
+// $lg-thumb-toggle-hover-color  $lg-icon-hover-color  Thumbnail icon toggle icon color on hover
+// $lg-thumb-bg  #0D0A0A  Thumbnail container background color
+
+$zindex-outer: 1250; // Gallery outer div z-index
+$zindex-progressbar: 1280; //  Gallery autoplay progress bar z-index
+$zindex-controls: 1280; //  Gallery controls z-index
+$zindex-toolbar: 1280; //  Gallery toolbar z-index
+$zindex-subhtml: 1280; //  Gallery sub html container z-index
+$zindex-thumbnail: 1280; //  Gallery thumbnail container z-index
+$zindex-pager: 1280; //  Gallery pager z-index
+$zindex-playbutton: 1280; //  Video play button z-index
+$zindex-item: 1260; //  Gallery slide item z-index
+$zindex-backdrop: 1240; //  Gallery backdrop z-index

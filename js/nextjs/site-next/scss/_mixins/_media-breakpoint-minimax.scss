@@ -1,0 +1,48 @@
+@function media-breakpoint-val-is-bp($val) {
+	@return $val == 'sm' or $val == 'md' or $val == 'lg' or $val == 'xl'; 
+}
+
+@function media-breakpoint-min-to-value($min) {
+	@if media-breakpoint-val-is-bp($min) {
+		@return breakpoint-min($min, $grid-breakpoints);
+	} @else {
+		@return $min;
+	}
+}
+
+@function media-breakpoint-max-to-value($max) {
+	@if media-breakpoint-val-is-bp($max) {
+		@return breakpoint-min($max, $grid-breakpoints) - 1;
+	}
+	@else {
+		@return $max;
+	}
+}
+
+
+@mixin media-breakpoint-minimax(
+		$min: false,
+		$max: false,
+		$bp: false) 
+{
+	@if $min and $max {
+		@media (min-width: media-breakpoint-min-to-value($min)) and (max-width: media-breakpoint-max-to-value($max)) {
+			@content;
+		}
+	} @else if $min {
+		@media (min-width: media-breakpoint-min-to-value($min)) {
+			@content;
+		}
+	} @else if $max {
+		// @media (max-width: media-breakpoint-max-to-value($max)) {
+			@content;
+		// }
+	} @else if $bp {
+		@include media-breakpoint-up($bp) {
+			@content;
+		}
+	}
+	@else {
+		@error "media-breakpoint-minimax bad arguments";
+	}
+}

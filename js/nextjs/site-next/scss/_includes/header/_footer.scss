@@ -1,0 +1,99 @@
+.container-fluid.footer {
+	$container-text-color: $color-white;
+
+	background-color: $color-headers;
+
+	color: $container-text-color;
+	font-family: 'Roboto';
+	font-weight: $text-font-weight-roboto;
+	.btn {
+		border-radius: px2rem(6);
+		background: none;
+		border: 1px $container-text-color solid;
+	}
+
+	@include setup-svg-icon-base-style-white($selector: ".phone .svg", $color: $container-text-color);
+	@include setup-svg-icon-base-style-white($selector: ".email .svg", $color: $container-text-color);
+
+	.btn {
+		text-transform: uppercase;
+		font-weight: $button-font-weight - 100;
+		height: px2rem(40);
+		padding-top: px2rem(7);
+		padding-bottom: px2rem(2);
+		margin-top: px2rem(6);
+		.wr {
+			display: block;
+		}
+	}
+	.btn-p {
+		margin-bottom: px2rem(26);
+	}
+	@include button-focus-none; 
+
+	p.v2 {
+		font-weight: $footer-link-font-not-service;
+	}
+	p.phone a {
+		color: $container-text-color;
+	}
+
+	p.phone, p.email {
+		display: flex;
+		flex-flow: row nowrap;
+        color: inherit !important; 
+        text-decoration: none !important;
+	}
+	p.phone .phone-icon, p.email .email-icon {
+		width: 2em;
+		display: block
+	}
+
+	a.email-ref {
+		display: block;
+		color: $container-text-color;  
+	}
+	a.contacts {
+		display: block;
+		.wr {
+			display: inline;
+			color: $container-text-color;
+			font-weight: $footer-link-font-not-service;
+			border-bottom: 1px solid $underline-color;
+		}
+	}
+	.footer-nav-link {
+		display: block;
+		color: $container-text-color;
+		text-decoration-line: none;
+		.wr {
+			display: inline;
+			border-bottom: 1px solid $underline-color;
+		}
+	}
+	.footer-service-menu {
+		list-style-type: none;
+		padding-left: 0;
+	}
+	.footer-nav-link.noservice {
+		font-weight: $footer-link-font-not-service;
+		margin-bottom: px2rem(18);
+	}
+	.footer-nav-link.service {
+		margin-bottom: px2rem(8);
+	}
+	a.phone-ref,a.email-ref,a.contacts {
+		text-decoration-line: none;
+	}
+} 
+
+
+
+@mixin setup-footer-media($breakpoint) {
+	@if $breakpoint == 'sm' {
+		.container-fluid.footer .btn {
+			padding-top: px2rem(6);
+			padding-bottom: px2rem(2);
+		}
+	}
+}

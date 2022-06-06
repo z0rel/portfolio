@@ -1,0 +1,153 @@
+# Make-файл для сборки Rollout Service
+
+ifeq ($(ROC_BUILD_RELEASE),1)
+  OPTFLAG_LINKER   = -Wl,-O2
+  OPTFLAG_COMPILER = -O2
+else
+  OPTFLAG_LINKER   = -Wl,-O0 -g
+  OPTFLAG_COMPILER = -O0 -g3
+endif
+
+# Определения для компиляции thrift-интерфейсов {
+
+THRIFTSRC_NSMS   = $(foreach thfile, $(THRIFT_NSMS_GEN_BASE), $(OBJECTS_DIR)/$(thfile).cpp) \
+                   $(foreach thfile, $(THRIFT_NSMS_GEN_BASE), $(OBJECTS_DIR)/$(thfile).h)
+THRIFTSRC_NOTIFY = $(foreach thfile, $(THRIFT_NOTIFY_GEN_BASE), $(OBJECTS_DIR)/$(thfile).cpp) \
+                   $(foreach thfile, $(THRIFT_NOTIFY_GEN_BASE), $(OBJECTS_DIR)/$(thfile).h)
+
+THRIFTSRC        = $(THRIFTSRC_NSMS) $(THRIFTSRC_NOTIFY)
+OBJECTS_NSMS     = $(foreach thfile, $(THRIFT_NSMS_GEN_BASE),   $(OBJECTS_DIR)/$(thfile).o) 
+OBJECTS_NOTIFY   = $(foreach thfile, $(THRIFT_NOTIFY_GEN_BASE), $(OBJECTS_DIR)/$(thfile).o)  
+
+OBJECTS_THRIFT  = $(OBJECTS_NSMS) $(OBJECTS_NOTIFY)
+
+# }
+
+
+OBJECTS = $(OBJECTS_BASE) $(OBJECTS_THRIFT)
+
+# Флаги компиляции              {
+
+INCPATH            = -I$(SOURCE_DIR) -I$(OBJECTS_DIR) $(foreach inc, $(SPEC_INCPATH), -I$(inc)) $(ENV_INCPATH)
+LFLAGS             = $(OPTFLAG_LINKER)
+
+COPTFLAGS          = -pipe $(OPTFLAG_COMPILER) 
+CFLAGS             = $(COPTFLAGS) $(COMMON_DEFINES) 
+CXXFLAGS           = $(CFLAGS) $(COMMON_CXXFLAGS)   
+CXXFLAGS_THRIFT    = -pipe -std=c++11 -fstack-protector $(COMMON_DEFINES)
+
+# }
+
+# Псевдонимы для системных команд {
+
+CC                 = gcc
+CXX                = g++
+LINK               = g++
+SED                = sed
+DEL_FILE           = rm -f
+DEL_DIR            = rm -Rf
+MKDIR              = mkdir -p
+THRIFT_BINARY      = build_env/opt/itcs/bin/thrift
+THRIFT             = $(THRIFT_BINARY) -r --gen cpp --out $(OBJECTS_DIR)
+
+# }
+# Основные цели {
+
+first: all
+
+all: $(TARGET)
+
+$(TARGET): $(OBJECTS) | $(DESTDIR)
+	@echo $(OBJECTS)
+	$(LINK) $(LFLAGS) -o $(TARGET) $(OBJECTS) $(ENV_LIBPATH) $(LIBS_LIST) $(SUBLIBS)
+
+
+clean:  FORCE
+	-$(DEL_FILE) $(OBJECTS_DIR)/null $(OBJECTS_DIR)/snull
+	-$(DEL_FILE) $(OBJECTS)
+	-$(DEL_FILE) $(DEPFILES)
+
+distclean: clean
+	$(DEL_FILE) $(TARGET) 
+	$(DEL_DIR)  $(DEPENDS_DIR)
+	$(DEL_DIR)  $(OBJECTS_DIR)
+
+#}
+# Цели thrift-интерфейсов {
+
+$(firstword $(THRIFTSRC_NSMS)): $(THRIFT_NSMS)
+	$(THRIFT) $(THRIFT_NSMS)
+
+$(firstword $(THRIFTSRC_NOTIFY)): $(THRIFT_NOTIFY)
+	$(THRIFT) $(THRIFT_NOTIFY)
+
+$(filter-out $(firstword $(THRIFTSRC_NSMS)), $(THRIFTSRC_NSMS)):
+	@true
+
+$(filter-out $(firstword $(THRIFTSRC_NOTIFY)), $(THRIFTSRC_NOTIFY)):
+	@true
+
+$(OBJECTS_NSMS): $(OBJECTS_DIR)/%.o: $(OBJECTS_DIR)/%.cpp | $(OBJECTS_DIR)
+	$(CXX) -c $(CXXFLAGS_THRIFT)                  $(INCPATH) -o $(OBJECTS_DIR)/$(*F).o $<
+
+$(OBJECTS_NOTIFY): $(OBJECTS_DIR)/%.o: $(OBJECTS_DIR)/%.cpp | $(OBJECTS_DIR)
+	$(CXX) -c $(CXXFLAGS_THRIFT)                  $(INCPATH) -o $(OBJECTS_DIR)/$(*F).o $<
+
+# }
+
+# Вспомогательные и диагностические цели {
+
+check:  FORCE
+	@echo "===== depfiles ====="
+	@echo $(DEPFILES)
+	@echo "===== target ====="
+	@echo $(TARGET)
+	@echo "===== objects ====="
+	@echo $(OBJECTS)
+	@echo "===== srcdep ====="
+	@echo $(SRCDEPFILES)
+
+depfiles: $(DEPFILES) 
+
+get_cxxflags: 
+	@echo -c $(CXXFLAGS)
+
+get_includepath: 
+	@echo $(INCPATH)
+
+get_srcbase:
+	@echo $(SOURCES_BASIS)
+
+
+# }
+# Создание сборочных каталогов {
+
+$(DEPENDS_DIR) $(OBJECTS_DIR) $(DESTDIR):
+	$(MKDIR) $@
+
+#}
+# Генерация файлов зависимостей для обычных исходников {
+
+define dependsGenCmd
+	@set -e; \
+	if [ -e "$@" ]; then $(DEL_FILE) "$@"; fi; \
+	$(CXX) -MM $(INCPATH) $(CXXFLAGS) $< \
+	  | $(SED) 's,\($*\)\.o[ :]*,$(OBJECTS_DIR)/\1.o $(DEPENDS_DIR)/\1.$(1): ,g' > $@ 
+endef
+
+#}
+# Ограничения на генерацию зависимостей для некоторых целей {
+# Когда создаются эти цели - не включать зависимости
+NODEPS:=clean distclean tags svn check heads
+# Не создавать зависимости, когда выполняется очистка или вспомогательная цель
+ifeq (0, $(words $(findstring $(MAKECMDGOALS), $(NODEPS)))) 
+  # Есть вероятность, что эти файлы не существуют. 
+  # Make создаст их и очистит впоследствии.
+  -include $(DEPFILES) 
+endif 
+
+#}
+
+FORCE:
+
+# vim:foldmethod=marker:foldmarker={,}

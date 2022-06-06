@@ -1,0 +1,7 @@
+<RCC>
+    <qresource prefix="/">
+        <file>resources/cube.mtl</file>
+        <file>resources/cube.obj</file>
+        <file>resources/pluto.png</file>
+    </qresource>
+</RCC>

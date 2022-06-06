@@ -1,0 +1,58 @@
+@use "sass:math";
+@import "_includes/pages/index/protfolio-main-noscript";
+@import "node_modules/bootstrap/scss/mixins";
+@import "utils";
+
+
+@function px2rem($val, $px: 'px') {
+    $res: round(math.div(1000.0 * $val, 22));
+    @return #{math.div($res, 1000.0)}rem;
+}
+
+@function px2rem-val($val, $px: 'px') {
+    $res: round(math.div(1000.0 * $val, 22));
+    @return math.div($res, 1000.0);
+}
+
+$grid-breakpoints: (xs: 0, sm: 576px, md: 768px, lg: 992px, xl: 1200px);
+$portfolio-border-color: #95989A;
+ 
+
+svg {
+	display: none;
+}
+
+.service-custom-img .svg.service-image,
+.contentHead .navbar .navbar-brand .svg {
+	height: inherit;
+}
+img.lazy {
+    display: none;
+}
+
+.noscript-hidden {
+    display: none !important;
+}
+
+.cdt .svg, .contacts-form .svg,
+.service-custom .service-complex-img .svg,
+.content-block.about-company ul.our-spec .svg.s-code,
+.content-block.about-company ul.our-spec .svg,
+.content-block.about-company ul.our-spec .svg.s-repair,
+.content-block.about-company ul.our-servs .svg, 
+.content-block.about-company ul.our-servs .svg.s-intelligence {
+	width: inherit;
+}
+
+.noscr-descr {
+    font-size: px2rem(12);
+    margin: 1em 0.5em 0.5em 0.5em;
+}
+
+.noscr-descr-h {
+    font-size: px2rem(12) !important;
+    margin: 1em 0.5em 0.5em 0.5em !important;
+}
+
+
+@include portfolio-main-noscript();

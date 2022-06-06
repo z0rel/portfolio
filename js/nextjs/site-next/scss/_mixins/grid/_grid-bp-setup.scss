@@ -1,0 +1,53 @@
+@mixin grid-bp-setup($bp, $common-xs: false) {
+    // настройка всего, что требует спецификации точных брейкпоинтов
+    @if $bp == 'xs' and $common-xs {
+        // @include media-breakpoint-up(xs) {
+            @content;
+        //}
+    }
+    @else if $bp == 'xxs' {
+        @media (max-width: $bp-xxs) {
+            @content;
+        }
+    } 
+    @else if $bp == 'xs' {
+        @media (min-width: $bp-xxs + 1) and (max-width: map-get($grid-breakpoints, 'sm')-1) {  // [xs]
+            @content;
+        }
+    }
+    @else if $bp == 'sm' {
+        @include media-breakpoint-up(sm) {  // [xs]
+            @content;
+        }
+    }
+    @else if $bp == 'md' {
+        @include media-breakpoint-up(md) {  // [xs]
+            @content;
+        }
+    }
+    @else if $bp == 'lg' {
+        @include media-breakpoint-up(lg) {  // [xs]
+            @content;
+        }
+    }
+    @else if $bp == 'xl' {
+        @include media-breakpoint-up(xl) {  // [xs]
+            @content;
+        }
+    }
+} // end of @mixin grid-bp-setup
+
+/// Изменить брейкпоинт на xs если он xxs
+@function transform-spec-bp($bp) {
+    @if $bp == 'xxs' {
+        @return 'xs';
+    }
+    @return $bp;
+}
+
+
+@mixin if-has-bp($list, $bp) {
+	@if index($list, $bp) {
+        @content;
+    }
+}

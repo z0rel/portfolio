@@ -1,0 +1,33 @@
+-xc++
+-fgnu-keywords
+-fdiagnostics-format=vi
+-fcolor-diagnostics
+-Wno-unused-command-line-argument
+-Wno-unused-command-line-argument
+-DDEBUG
+-DENGLISH             
+-DLARGE_EXCHANGE      
+-DLINUX               
+-DLIN_PTHREAD         
+-DNO_ATFORK           
+-DSOCKETS             
+-DSUPP_LONGLONG       
+-DSUPP_POLL           
+-DSVR4                
+-DSVR42               
+-DUNIX                
+-D_ENGLISH            
+-D_LARGEFILE64_SOURCE 
+-D_LARGEFILE_SOURCE   
+-D_USED_TERM_H        
+-D_VER_MAX=610        
+-D__64BIT_ARCH__      
+-D_notrus             
+-I/home/artem/devs/ora2lin/src
+-I/home/artem/devs/ora2lin/flex_bison
+-I/home/artem/devs/ora2lin/flex_bison
+-I/home/artem/devs/ora2lin/linsrc
+-I/home/artem/devs/ora2lin/linsrc/decimals
+-I/home/artem/devs/ora2lin/linsrc/tick
+-isystem /usr/lib64/clang/3.5/include
+-isystem /usr/include/clang

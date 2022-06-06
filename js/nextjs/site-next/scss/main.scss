@@ -1,0 +1,174 @@
+@import "vars";
+@import "fonts";
+@import "libs";
+
+
+::placeholder {
+	color: #666;
+}
+
+::selection {
+	background-color: $color-accent-light-blue;
+	color: #fff;
+}
+
+html {
+	font-size: $base-font-size;
+}
+
+body {
+	min-width: 320px;
+	position: relative;
+	line-height: $line-height-coeff;
+	font-family: "Open Sans";
+	font-weight: $font-weight-light;
+	overflow-x: hidden;
+	color: $color-text;
+	input, textarea {
+		border: #666 1px solid;
+		outline: none;
+		&:focus:required:invalid {
+			border-color: red;
+		}
+		&:required:valid {
+			border-color: green;
+		}
+	}
+}
+
+
+small {
+  font-size: $small-font-size;
+  font-weight: $font-weight-normal;
+}
+
+mark {
+  padding: $mark-padding;
+  background-color: $mark-bg;
+}
+
+
+
+
+h1, .style-h1 {
+	font-family: "Roboto";
+	color: $color-headers;
+	font-weight: $header-font-weight; // $font-weight-bold;
+    margin-bottom: margin-bottom-h1('xxs');
+}
+
+h2, .style-h2 {
+	font-family: "Roboto";
+	color: $color-headers;
+	font-weight: $header2-font-weight;
+    // margin-top: margin-top-h2('xxs');
+    // margin-bottom: margin-h2-bottom('xxs');
+}
+
+$tooltip-color: $color-accent-dark-blue;
+.tooltip-inner {
+	background-color: $tooltip-color;
+	font-family: 'Roboto';
+	font-weight: 300;
+    @include media-breakpoint-up('xs') {
+		font-size: px2rem(14);
+    } 
+    @include media-breakpoint-up('md') {
+		font-size: px2rem(16);
+    } 
+}
+.tooltip.show {
+	opacity: 0.97; 
+}
+.tooltip.bs-tooltip-right .arrow:before {
+    border-right-color: $tooltip-color !important;
+}
+.tooltip.bs-tooltip-left .arrow:before {
+    border-left-color: $tooltip-color !important;
+}
+.tooltip.bs-tooltip-bottom .arrow:before {
+    border-bottom-color: $tooltip-color !important;
+}
+.tooltip.bs-tooltip-top .arrow:before {
+    border-top-color: $tooltip-color !important;
+}
+.abbr {
+	border-bottom: dashed 1px black;
+}
+
+.no-break-nobr {
+	white-space: nowrap !important;
+}
+
+
+
+.container {
+	$max-widths: $container-max-widths;
+	$breakpoints: $grid-breakpoints;
+
+	@each $breakpoint, $container-max-width in $max-widths {
+		@if $breakpoint != 'sm' {
+			@include media-breakpoint-up($breakpoint, $breakpoints) {
+				max-width: $container-max-width;
+			}
+		}
+		@else {
+			@include media-breakpoint-up($breakpoint, $breakpoints) {
+				max-width: 100%;
+			}
+		} 
+	}
+}
+
+
+a:focus {
+	outline: none;
+}
+
+.img-responsive {
+	display: block;
+	max-width: 100%;
+	height: auto;
+	&.img-width {
+		width: 100%;
+	}
+}
+ 
+.text-center {
+	text-align: center;
+}
+
+b, strong {
+	font-weight: bold;
+}
+
+ 
+@import "_includes/header/navbar";
+@import "_includes/header/breadcrumb";
+@import "_includes/pages/index";
+@import "_includes/pages/index/gallery";
+@import "_includes/pages/internal/internal"; 
+@import "_includes/pages/internal/internal_portfolio"; 
+
+@import "_includes/header/footer";
+
+
+@import "media"; // Always at the end
+
+
+
+
+// ----
+.s-mail .svg {
+	fill: #4c82a4;
+}
+
+.s-person .svg {
+	fill: #4c82a4;
+}
+.s-phone .svg {
+	fill: #4c82a4;
+}
+.s-producton .svg {
+	fill: #638999;
+}

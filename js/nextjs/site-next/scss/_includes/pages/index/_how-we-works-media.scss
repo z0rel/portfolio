@@ -1,0 +1,182 @@
+ 
+
+@mixin setup-marker-how-we-works($marker-circle-diameter, $top-offset) {
+    background-size: $marker-circle-diameter $marker-circle-diameter;
+    width: $marker-circle-diameter; 
+    height: $marker-circle-diameter;
+    margin-top: $top-offset;
+}
+
+
+
+@mixin setup-how-we-works-xs-paddings($breakpoint) {
+	@include if-has-bp(('xxs', 'xs'), $breakpoint) {
+        $li-icon-width: map-get($li-icon-width-map, $breakpoint);
+        $offset: $li-icon-width*1.4;
+        .how-we-works .timeline-block {
+            padding-left: px2rem(7, 'px');
+            li {
+                padding-left: $offset;
+                width: 100%;
+            }
+            .timeline-item .caps::before {
+                margin-left: calc(-#{$offset} - #{px2rem(7, 'px')});
+            }
+            .timeline-item::before {
+                margin-left: -$offset;
+            }
+        }
+    }
+}
+
+@mixin setup-how-we-works-margins($breakpoint) {
+    .how-we-works {
+        margin-top: margin-section($breakpoint);
+        margin-bottom: margin-section($breakpoint);
+    }
+}
+
+
+
+@mixin media-main-how-we-works($breakpoint) {
+    @if $breakpoint == 'xs' {
+        .how-we-works .timeline-block {
+            @include marker-circle-list-style('.timeline-item', '.caps');
+            .caps {
+                @include setup-fontsize-by-breakpoint('xs');
+            }
+            .descr {
+                @include setup-fontsize-by-breakpoint('xs', $coeff: 0.88);
+            }
+        } // end of .how-we-works .timeline-block
+    } // end of @if $breakpoint == 'xs'
+    @else if $breakpoint == 'sm' {
+        .how-we-works .timeline-block {
+            margin-left: 0;
+          	&::before {
+                border-left-style: none;
+            }
+            .timeline-item {
+                display: inline-block;
+                vertical-align: top;
+
+                &::before {
+        		    content: '';
+                    position: absolute;
+                    top: -1px;
+        		    width: 100%;
+                    height: 2px;
+                    border-bottom-style: solid;
+                    border-bottom-width: 1px;
+                    border-bottom-color: $color-white;
+                    margin-top: px2rem(30.5, 'px');
+                }
+                .descr {
+                    padding-left: 0px;
+                    padding-right: 0px;
+                    text-align: center;
+                    font-size: px2rem(9, 'px');
+                }
+                .caps::before {
+                    border-style: none;
+                    background-color: none;
+                    width: 0;
+                    height: 0;
+                }
+                .caps {
+                    width: 100%;
+                    padding-left: 0px;
+                    padding-right: 0px;
+                    padding-bottom: px2rem($standard-margin-val-px * 2, 'px');
+                    text-align: center;
+                    font-size: px2rem(10, 'px');
+                    text-transform: uppercase;
+                }
+                .caps::after {
+                    content: '';
+                    border-width: 1px;
+                    border-radius: 100%;
+                    border-style: solid;
+                    border-color: $color-white;
+                    background-color: $color-headers;
+                    display: block;
+                    position: absolute;
+                    margin-left: 43.5%; 
+                    background-repeat: no-repeat;
+
+                    @include setup-marker-how-we-works(px2rem(11, 'px'), px2rem(10.5, 'px'));
+                }
+            } // end of .timeline-item 
+            $items-widths: (
+                'requirements': 16%, 
+                'estimate': 14%,
+                'offer': 13%,
+                'contract': 14%,
+                'implementing': 14.5%,
+                'control': 12%,
+                'support': 16.5%
+            );
+            @each $control, $width in $items-widths {
+                .timeline-item.#{$control} {
+                    width: $width;
+                }
+            }
+        } // end of .how-we-works .timeline-block
+    } // end of @else if $breakpoint == 'sm'
+    @else if $breakpoint == 'md' {
+        .how-we-works .timeline-block {
+            .timeline-item {
+                &::before {
+                    margin-top: px2rem(32, 'px');
+                }
+                .descr {
+                    font-size: px2rem(10, 'px');
+                }
+                .caps {
+                    font-size: px2rem(10, 'px');
+                }
+            }
+        }
+    } // end of @else if $breakpoint == 'md'
+    @else if $breakpoint == 'lg' {
+            .how-we-works .timeline-block {
+                .timeline-item {
+                    &::before {
+                        margin-top: px2rem(37, 'px');
+                    }
+                    .descr {
+                        font-size: px2rem(12, 'px');
+                    }
+                    .caps {
+                        font-size: px2rem(12, 'px');
+                        padding-bottom: px2rem($standard-margin-val-px * 2.5, 'px');
+                    }
+                    .caps::after {
+                        @include setup-marker-how-we-works(px2rem(15, 'px'), px2rem(10.5, 'px'));
+                    }
+                }
+            }
+    } // end of @else if $breakpoint == 'lg' 
+    @else if $breakpoint == 'xl' {
+        .how-we-works .timeline-block {
+            .timeline-item {
+                &::before {
+                    margin-top: px2rem(41, 'px');
+                }
+                .descr {
+                    font-size: px2rem(14, 'px');
+                }
+                .caps {
+                    font-size: px2rem(14, 'px');
+                    padding-bottom: px2rem($standard-margin-val-px * 3, 'px');
+                }
+                .caps::after {
+                    @include setup-marker-how-we-works(px2rem(15, 'px'), px2rem(10.5, 'px'));
+                }
+            }
+        }
+    } // end of @else if $breakpoint == 'xl'
+} // end of @mixin media-main-how-we-works() 
+
+
+

@@ -1,0 +1,7 @@
+pyqt5
+xmltodict
+simplejson
+chardet
+lxml
+requests
+clipboard

@@ -1,0 +1,71 @@
+@use "sass:math";
+@import "vars";
+@import "fonts";
+@import "libs_global";
+
+::placeholder {
+  color: #666;
+}
+
+::selection {
+  background-color: $color-accent-light-blue;
+  color: #fff;
+}
+
+html {
+  font-size: $base-font-size;
+}
+
+body {
+  min-width: 320px;
+  position: relative;
+  line-height: $line-height-coeff;
+  font-family: "Open Sans";
+  font-weight: $font-weight-light;
+  overflow-x: hidden;
+  color: $color-text;
+  input, textarea {
+    border: #666 1px solid;
+    outline: none;
+    &:focus:required:invalid {
+      border-color: red;
+    }
+    &:required:valid {
+      border-color: green;
+    }
+  }
+}
+
+
+small {
+  font-size: $small-font-size;
+  font-weight: $font-weight-normal;
+}
+
+mark {
+  padding: $mark-padding;
+  background-color: $mark-bg;
+}
+
+h1, .style-h1 {
+  font-family: "Roboto";
+  color: $color-headers;
+  font-weight: $header-font-weight; // $font-weight-bold;
+  margin-bottom: margin-bottom-h1('xxs');
+}
+
+h2, .style-h2 {
+  font-family: "Roboto";
+  color: $color-headers;
+  font-weight: $header2-font-weight;
+  // margin-top: margin-top-h2('xxs');
+  // margin-bottom: margin-h2-bottom('xxs');
+}
+
+a:focus {
+  outline: none;
+}
+
+b, strong {
+  font-weight: bold;
+}

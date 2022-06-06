@@ -1,0 +1,109 @@
+@import "vars";
+@import "libs";
+//
+
+$tooltip-color: $color-accent-dark-blue;
+.tooltip-inner {
+  background-color: $tooltip-color;
+  font-family: 'Roboto';
+  font-weight: 300;
+  @include media-breakpoint-up('xs') {
+    font-size: px2rem(14);
+  }
+  @include media-breakpoint-up('md') {
+    font-size: px2rem(16);
+  }
+}
+.tooltip.show {
+  opacity: 0.97;
+}
+.tooltip.bs-tooltip-right .arrow:before {
+  border-right-color: $tooltip-color !important;
+}
+.tooltip.bs-tooltip-left .arrow:before {
+  border-left-color: $tooltip-color !important;
+}
+.tooltip.bs-tooltip-bottom .arrow:before {
+  border-bottom-color: $tooltip-color !important;
+}
+.tooltip.bs-tooltip-top .arrow:before {
+  border-top-color: $tooltip-color !important;
+}
+.abbr {
+  border-bottom: dashed 1px black;
+}
+
+.no-break-nobr {
+  white-space: nowrap !important;
+}
+
+//
+
+.container {
+  $max-widths: $container-max-widths;
+  $breakpoints: $grid-breakpoints;
+
+  width: 100%;
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+
+  @each $breakpoint, $container-max-width in $max-widths {
+    @if $breakpoint != 'sm' {
+      @include media-breakpoint-up($breakpoint, $breakpoints) {
+        max-width: $container-max-width;
+      }
+    }
+    @else {
+      @include media-breakpoint-up($breakpoint, $breakpoints) {
+        max-width: 100%;
+      }
+    }
+  }
+}
+
+
+.img-responsive {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  &.img-width {
+    width: 100%;
+  }
+}
+
+.text-center {
+  text-align: center;
+}
+
+
+@import "_includes/header/navbar";
+@import "_includes/header/breadcrumb";
+@import "_includes/pages/index";
+@import "_includes/pages/index/gallery";
+@import "_includes/pages/internal/internal";
+@import "_includes/pages/internal/internal_portfolio";
+
+@import "_includes/header/footer";
+
+
+@import "media"; // Always at the end
+
+
+
+
+// ----
+.s-mail .svg {
+  fill: #4c82a4;
+}
+
+.s-person .svg {
+  fill: #4c82a4;
+}
+.s-phone .svg {
+  fill: #4c82a4;
+}
+.s-producton .svg {
+  fill: #638999;
+}

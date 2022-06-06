@@ -1,0 +1,38 @@
+# Make-файл для сборки Rollout Service
+
+include roc.pri
+
+# Пути проекта                  {
+
+DESTDIR          = build/rollout_center/bin
+OBJECTS_DIR      = build/rollout_center/obj
+DEPENDS_DIR      = build/rollout_center/depends
+
+#}
+# Определение базовых переменных {
+
+TARGET           = $(DESTDIR)/$(TARGET_NAME)
+SOURCES_BASIS    = $(basename $(notdir $(BASE_SOURCES)))
+SRCOBJECTS       = $(foreach depfile, $(SOURCES_BASIS), $(OBJECTS_DIR)/$(depfile).o) 
+OBJECTS_BASE     = $(SRCOBJECTS) 
+SRCDEPFILES      = $(foreach depfile, $(SOURCES_BASIS), $(DEPENDS_DIR)/$(depfile).d)
+DEPFILES         = $(SRCDEPFILES) 
+
+# }
+
+include Makefile_roc.in
+
+# Генерация файлов зависимостей для обычных исходников {
+
+$(SRCDEPFILES): $(DEPENDS_DIR)/%.d: $(SOURCE_DIR)/%.cpp | $(DEPENDS_DIR)
+	@$(call dependsGenCmd,d)
+
+#}
+# Правила сборки объектных файлов {
+
+$(SRCOBJECTS): $(OBJECTS_DIR)/%.o: $(SOURCE_DIR)/%.cpp | $(OBJECTS_DIR) 
+	$(CXX) -c $(CXXFLAGS)                  $(INCPATH) -o $(OBJECTS_DIR)/$(*F).o $<
+                                                                                    
+#}
+
+# vim:foldmethod=marker:foldmarker={,}

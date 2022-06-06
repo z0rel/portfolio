@@ -1,0 +1,83 @@
+syntax = "proto3";
+
+package sales;
+
+message ConstructionSide {
+    string id              =  1;
+    string postcode        =  2;
+    string num_in_district =  3;
+    string side_title      =  4;
+    string side_code       =  5;
+    string adv_side_code   =  6;
+    string adv_side_title  =  7;
+    string city_title      =  8;
+    string format_title    =  9;
+    string format_code     = 10;
+    string address_title   = 11;
+    bool   is_nonrts       = 12;
+    string nonrts_owner    = 13;
+    string package_title   = 14;
+    bool status_connection = 15;
+}
+
+
+
+message ProjectReservation {
+    string id                          = 1;
+    string creation_date               = 2;
+    string start_date                  = 3;
+    string updated_at                  = 4;
+    string reservation_type_id         = 5;  // Бронирования -> Тип брони
+    string reservation_type_title      = 6;  // Бронирования -> Тип брони
+    bool branding                      = 7;
+    string design                      = 8;
+    ConstructionSide construction_side = 9;
+}
+
+message ProjectAppendix {
+    string id                = 1;
+    string appendix_number = 2;
+    string appendix_year   = 3;
+    string creation_date     = 4;
+    string date_from         = 5;
+    string date_to           = 6;
+    string summa             = 7;
+}
+
+
+message IdentifiedTitles {
+    string id = 1;
+    string title = 2;
+}
+
+message Project {
+    string id                                = 1;
+    string code                              = 2;
+    int32 num_in_year                        = 3;
+    string title                             = 4;
+    string start_date                        = 5;
+    string created_at                        = 6;
+    string client_title                      = 7;
+    string client_city_title                 = 8;
+    string agency_title                      = 9;
+    string agency_city_title                 = 10;
+    string back_office_manager_first_name    = 11;
+    string back_office_manager_last_name     = 12;
+    string sales_manager_first_name          = 13;
+    string sales_manager_last_name           = 14;
+    string brand_title                       = 15;
+    repeated IdentifiedTitles working_sector = 16;
+    repeated IdentifiedTitles cities         = 17;
+}
+
+message Projects {
+    repeated Project items = 1;
+}
+
+message ProjectAppendices {
+    repeated ProjectAppendix items = 1;
+}
+
+message ProjectReservations {
+    repeated ProjectReservation items = 1;
+}

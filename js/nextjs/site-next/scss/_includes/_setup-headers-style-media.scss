@@ -1,0 +1,13 @@
+@mixin setup-headers-style($breakpoint) {
+        .h1 {
+            margin-bottom: margin-bottom-h1($breakpoint);
+        }
+	    .h2 {
+            margin-top: margin-h2-top($breakpoint);
+            margin-bottom: margin-h2-bottom($breakpoint);
+        }
+	    .h3, .style-h3, .h2.style-h3 {
+            margin-top: margin-h3-top($breakpoint);
+            margin-bottom: margin-h3-bottom($breakpoint);
+        }
+}

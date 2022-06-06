@@ -1,0 +1,264 @@
+
+
+@include setup-svg-icon-base-style-text($selector: ".cdt .svg, .contacts-form .svg");
+
+
+.cdt { // contacts-data
+	padding-left: 0;
+	padding-right: 0;
+
+		background-color: $color-contacts-background;
+		// box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.2);
+	p {
+		font-family: 'Roboto';
+		font-weight: $text-font-weight-roboto;
+	}
+
+	$addr-spacing: 8em;
+	.contact-val { // секции с иконкой
+		display: flex;
+		flex-flow: row nowrap;
+	}
+	/* Включить если появится второй номер
+	.phone1 {
+		 margin-bottom: 0;
+	}*/
+	.phone1, .phone2 {
+		display: flex;
+		flex-flow: row wrap; // XS
+		// margin-bottom: 0;
+		a {
+			color: $color-accent-dark-blue;
+		}
+		.phone-icon, .val {
+			display: block;
+            color: inherit !important; 
+            text-decoration: none !important;
+		}
+		.phone-icon {
+			width: 3em;
+		}
+	}
+	.email {
+		display: flex;
+		flex-flow: row wrap;
+
+		.email-icon, .val {
+			display: block;
+		}
+		.email-icon {
+			width: 3em;
+		}
+		.val a {
+			color: $color-accent-dark-blue;
+			// font-weight: $font-weight-medium;
+		}
+		// @include decorate-link;
+		// .wr {
+		// 	border-bottom-color: $color-accent-light-blue;
+		// }
+	}
+ 
+
+	.INN, .KPP, .OGRN, .INNKPP  {
+		// margin-bottom: 0;
+		display: flex;
+		flex-flow: row wrap;
+	}
+	.INN, .KPP {
+		display: none;
+	}
+	.recv-head {
+		color: $color-list-promo-text;
+		display: inline-block;
+		// width: $addr-spacing;
+		width: 100%;
+		min-width: $addr-spacing;
+		margin-bottom: .4em;
+	}
+	.recv-head-addr {
+		width: $addr-spacing;
+		display: block;
+		// text-transform: uppercase;
+	}
+	.address-val {
+		display: flex;
+		flex-flow: row wrap;
+	}
+	.addr-head {
+		display: block;
+	}
+	.recv-head, .recv-head-addr {
+		font-weight: $header-font-weight;
+	}
+}
+
+.contacts-form {
+	.input-group-text {
+		background-color: $color-headers;
+		border-radius: 0;
+		border: none;
+		.svg {
+			fill: $color-white;
+			margin-top: 0;
+		}
+	}
+	
+	input, textarea {
+		border-radius: 0;
+		border-color: $color-input-borders;
+		border-left: none;
+	}
+	.name-area, .email-area, .message-area {
+		.input-group-text {
+			padding: 0.5em 0.5em;
+		}
+	}
+	.message-area .input-group-text {
+		.svg {
+			margin-bottom: auto;
+		}
+	}
+	.wrap {
+		width: calc(100% - 43px);
+	}
+	textarea {
+		min-height: 266px; 
+		height: 266px; 
+		outline: none !important;
+		outline-color: none;
+		-moz-appearance: none;
+	    position: relative;
+	    // margin: 20px 0 0 20px;
+		z-index: 1;
+		width: 100%;
+	}
+	input:focus, textarea:focus {
+		border-color: $color-accent-light-blue;
+		outline: none  !important;
+		outline-color: none;
+		-moz-appearance: none;
+	    -webkit-box-shadow: none;
+	    box-shadow: none;
+	}
+	$pl-fw: $font-weight-light;
+	$pl-fc: #638999;
+
+	/* Chrome, Firefox, Opera, Safari 10.1+ */
+	input::placeholder, textarea::placeholder { 
+		font-family: 'Roboto';
+		text-transform: uppercase;
+		font-weight: $pl-fw;
+		color: $pl-fc;
+	}
+
+	/* Internet Explorer 10-11 */
+	input:-ms-input-placeholder, textarea:-ms-input-placeholder { 
+		font-family: 'Roboto';
+		text-transform: uppercase;
+		font-weight: $pl-fw;
+		color: $pl-fc;
+	}
+
+	/* Microsoft Edge */
+	input::-ms-input-placeholder, textarea::-ms-input-placeholder { 
+		font-family: 'Roboto';
+		text-transform: uppercase;
+		font-weight: $pl-fw;
+		color: $pl-fc;
+	}
+
+	.wrap {
+	    position: relative;
+	    display: inline-block;
+	}
+	$triangle-right: -9px;
+	$triangle-bottom: -2px;
+	.wrap:after {
+	    content:"";
+	    border-top: 15px solid $color-headers;
+	    border-left: 15px solid transparent;
+	    border-right: 15px solid transparent;
+	    -webkit-transform: rotate(-45deg);
+	    z-index: 1;
+	    // opacity: 0.5;
+	    position: absolute;
+	    right: $triangle-right;
+	    bottom: $triangle-bottom;
+	    pointer-events: none;
+		cursor: move;
+	}
+	.pull-tab {
+	    height: 0px;
+	    width: 0px;
+	    border-top: 15px solid $color-headers;
+	    border-left: 15px solid transparent;
+	    border-right: 15px solid transparent;
+	    -webkit-transform: rotate(-45deg);
+	    position: absolute;
+	    right: $triangle-right;
+	    bottom: $triangle-bottom;
+	    pointer-events: none;
+		z-index: 2;
+		cursor: move;
+	}
+
+	.please-input, .our-spec {
+		font-family: 'Roboto';
+		font-weight: $text-font-weight-roboto;
+	}
+	.our-spec {
+		font-weight: $header2-font-weight;
+	}
+	.btn-wrap {
+		margin-top: 24px;
+		.btn {
+			border-radius: 0;
+			background: $color-headers; 
+			color: $color-white;
+			font-family: 'Roboto';
+			font-weight: $button-font-weight;
+			font-size: 18px;
+			text-transform: uppercase;
+			letter-spacing: 0.5px;
+			padding: 0.4em 1em;
+			min-width: 50%;
+			width: 100%;
+			border: none;
+		}
+		@include button-focus-none; 
+	}
+}
+
+
+@mixin setup-contact-form-media($breakpoint) {
+	$pl-fz: #{map-get($media-font-size-map-roboto, $breakpoint)}rem;
+	 
+	.contacts-form form {
+		input, textarea {
+			font-size: $pl-fz;
+		}
+	}
+	.contacts-form {
+		input::placeholder, textarea::placeholder {
+			font-size: $pl-fz;
+		}
+
+		input:-ms-input-placeholder, textarea:-ms-input-placeholder {
+			font-size: $pl-fz;
+		}
+
+		input::-ms-input-placeholder, textarea::-ms-input-placeholder {
+			font-size: $pl-fz;
+		}
+	}
+	.contacts-form .btn-wrap .btn {
+		font-size: $pl-fz;
+		@if $breakpoint == 'sm' {
+			width: 54%;
+		}
+		@if $breakpoint == 'md' {
+			width: 50%;
+		}
+	}
+}

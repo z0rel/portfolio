@@ -1,0 +1,71 @@
+@import "_mixins/inline-svg";
+
+@mixin setup-navbar-dropdown-xs-background($width: 20%, $p-height: 110, $p-width: 100, $p-corner: 20) {
+	width: $width;
+
+	// border: 1px solid white;
+
+	$p-x1: 0;
+	$p-y1: $p-height - $p-corner;
+
+	$p-x2: $p-corner;
+	$p-y2: $p-height;
+
+	$p-x3: $p-width - $p-corner;
+	$p-y3: $p-height;
+
+	$p-x4: $p-width;
+	$p-y4: $p-height - $p-corner;
+
+	// // правая верхняя точка
+	// $p-x5: $p-width;
+	// $p-y5: 0;
+
+	$p-x5: $p-width;
+	$p-y5: 0 + $p-corner;
+
+	$p-x6: $p-width - $p-corner;
+	$p-y6: 0;
+
+	$p1-1: $p-x1 $p-y1;
+	$p1-2: $p-x2 $p-y2;
+	$p1-3: $p-x3 $p-y3;
+	$p1-4: $p-x4 $p-y4;
+	$p1-5: $p-x5 $p-y5; 
+	$p1-6: $p-x6 $p-y6;
+
+	$p-border-width: 1;
+	$p-border-width-half: 0.5;
+	$p2-0: $p-border-width-half $p-border-width-half;
+	$p2-1: #{$p-x1 + $p-border-width-half} #{$p-y1 - $p-border-width-half};
+	$p2-2: #{$p-x2 + $p-border-width-half} #{$p-y2 - $p-border-width-half};
+	$p2-3: #{$p-x3 - $p-border-width-half} #{$p-y3 - $p-border-width-half};
+	$p2-4: #{$p-x4 - $p-border-width-half} #{$p-y4 - $p-border-width-half};
+	$p2-5: #{$p-x5 - $p-border-width-half} #{$p-y5 + $p-border-width-half}; // правая верхняя точка
+	$p2-6: #{$p-x6 - $p-border-width-half} #{$p-y6 + $p-border-width-half}; // правая верхняя точка
+
+	$x1: 0;
+	$svg-bg: inline-svg(
+		'<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 #{$p-width} #{$p-height}">' 
+			+ '<defs>'
+			    + '<linearGradient id="a" x1="#{$x1}" x2="50" y2="#{$p-height}" gradientUnits="userSpaceOnUse">'
+			    	+ '<stop offset="0" stop-color="#4d819f" stop-opacity="0"/>'
+			    	+ '<stop offset="0.13" stop-color="#4d819f" stop-opacity="0.04"/>'
+			    	+ '<stop offset="0.55" stop-color="#4d819f" stop-opacity="0.57"/>'
+			    	+ '<stop offset="0.8" stop-color="#4d819f" stop-opacity="0.85"/>'
+			    	+ '<stop offset="1" stop-color="#4d819f" stop-opacity="0.95"/>'
+				+ '</linearGradient>'
+				+ '<linearGradient id="b" y1="#{$p-height}" x2="#{$x1}" y2="0" xlink:href="#a"/>'
+			+ '</defs>'
+			+ '<polygon points="0 0 #{$p1-1} #{$p1-2} #{$p1-3} #{$p1-4} #{$p1-5} #{$p1-6} 0 0" fill="url(#a)"/>'
+			+ '<polygon points="#{$p2-0} #{$p2-1} #{$p2-2} #{$p2-3} #{$p2-4} #{$p2-5} #{$p2-6} #{$p2-0}" fill="none" stroke-miterlimit="10" stroke-width="#{$p-border-width}" stroke="url(#b)"/>'
+			// + '<polygon points="0 0 #{$p1-1} #{$p1-2} #{$p1-3} #{$p1-4} #{$p1-5} 0 0" fill="#FF0000"/>'
+			// + '<polygon points="#{$p2-0} #{$p2-1} #{$p2-2} #{$p2-3} #{$p2-4} #{$p2-5} #{$p2-0}" fill="none" stroke-miterlimit="10" stroke-width="#{$p-border-width}" stroke="#FF0000"/>'
+		+ '</svg>');
+	
+	background-image: $svg-bg;
+	background-size: contain; 
+	background-repeat: no-repeat;
+	background-position: center; 
+}
+

@@ -1,0 +1,28 @@
+@import "_mixins/font-face";
+@import "vars";
+
+@include font-face("Roboto", 'Roboto Bold', 'Roboto-Bold', "/fonts/Roboto-Bold", $font-weight-bold); // -
+@include font-face("Roboto", 'Roboto Medium', 'Roboto-Medium', "/fonts/Roboto-Medium", $font-weight-medium); // -
+@include font-face("Roboto", "Roboto", "Roboto-Regular", "/fonts/Roboto-Regular", $font-weight-regular); // -
+@include font-face("Roboto", 'Roboto Light', 'Roboto-Light', "/fonts/Roboto-Light", $font-weight-light); // -
+@include font-face("Roboto", "Roboto Thin", "Roboto-Thin", "/fonts/Roboto-Thin", $font-weight-thin); 
+
+@include font-face('Open Sans', 'Open Sans ExtraBold', 'OpenSans-ExtraBold', "/fonts/OpenSans-ExtraBold", $font-weight-extra-bold); 
+@include font-face('Open Sans', 'Open Sans Bold', 'OpenSans-Bold', "/fonts/OpenSans-Bold", $font-weight-bold); 
+@include font-face("Open Sans", 'Open Sans SemiBold', 'OpenSans-SemiBold', "/fonts/OpenSans-SemiBold", $font-weight-semibold); // -
+@include font-face("Open Sans", 'Open Sans Regular', 'OpenSans-Regular', "/fonts/OpenSans-Regular", $font-weight-regular); // -
+@include font-face("Open Sans", 'Open Sans Light', 'OpenSans-Light', "/fonts/OpenSans-Light", $font-weight-light); // -
+
+   
+@font-face {
+	font-family: 'lg';
+	font-weight: normal;
+	font-display: auto;
+	font-style: normal;
+
+	$file-path: '/fonts/lg';
+    src: url("#{$file-path}.eot?n1z373");
+    src: url("#{$file-path}.eot?#iefixn1z373") format("embedded-opentype"), url("#{$file-path}.woff?n1z373") format("woff"), url("#{$file-path}.ttf?n1z373") format("truetype"), url("#{$file-path}.svg?n1z373#lg") format("svg");
+}
+
+

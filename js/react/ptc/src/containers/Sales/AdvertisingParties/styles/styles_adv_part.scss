@@ -1,0 +1,582 @@
+.layout-main {
+  background: #fff !important;
+  height: 100% !important;
+}
+.layout-sider {
+  background: #f5f7fa;
+  min-width: 60px !important;
+  max-width: 60px !important;
+  border-right: 1px solid #d3dff0 !important;
+}
+.layout-breadcrumb {
+  font-size: 11px;
+  margin: 0 0 20px 0;
+}
+.layout-breadcrumb a,
+.layout-breadcrumb span {
+  color: #8aa1c1 !important;
+}
+.left-bar-list {
+  padding: 10px 5px !important;
+}
+.left-bar-list li {
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  height: 55px;
+  align-items: center;
+  justify-content: space-around;
+  border-bottom: 1px solid #d3dff0;
+  margin-bottom: 15px;
+}
+.left-bar-list span {
+  text-align: center;
+  line-height: normal;
+  margin: 10px 0;
+  color: #003360 !important;
+  font-size: 11px;
+}
+.ant-table-thead > tr > th {
+  background: #fff;
+}
+.ant-table table {
+  border-collapse: separate !important;
+}
+.custom-table .ant-table {
+  border: 1px solid #d3dff0 !important;
+  border-radius: 8px;
+}
+.custom-table .ant-table-thead > tr > th {
+  background: transparent;
+  color: #1a1a1a;
+  font-weight: 600;
+}
+.custom-table .ant-table-thead > tr > th > span {
+  background: #d3dff0;
+  width: 1px;
+}
+.custom-table .ant-table-tbody > tr.ant-table-row:hover > td {
+  background: #d3dff0;
+}
+.custom-table .ant-table-tbody tr:nth-child(even) {
+  background: #f5f7fa !important;
+}
+.custom-table .ant-table-tbody tr:nth-child(odd) {
+  background: #fff;
+}
+.filter-panel {
+  width: 240px;
+  background: #f5f7fa;
+  border-right: 1px solid #d3dff0;
+}
+.filter-panel > div {
+  display: flex;
+  padding: 20px 15px;
+  border-bottom: 1px solid #d3dff0;
+}
+.filter-panel-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 14px;
+  color: #171717 !important;
+  font-weight: 600;
+}
+.filter-panel-header img {
+  cursor: pointer;
+}
+.filter-panel-title {
+  height: 65px;
+  align-items: flex-end;
+  text-transform: uppercase;
+}
+.filter-panel-title strong {
+  color: #003360 !important;
+}
+.filter-panel-date {
+  flex-direction: column;
+}
+.filter-panel-date span {
+  font-weight: 600;
+  color: #1a1a1a !important;
+}
+.filter-datepicker {
+  margin-top: 20px;
+}
+.filter-panel-status {
+  display: flex;
+  flex-direction: column;
+}
+.filter-panel .custom-checkbox {
+  margin: 0 !important;
+}
+.filter-panel-status > div > div {
+  display: flex;
+  align-items: center;
+}
+.filter-panel-status > div > div span {
+  color: #1a1a1a !important;
+}
+.filter-panel > div > div > span {
+  color: #1a1a1a !important;
+}
+.dot-1 {
+  height: 8px;
+  margin: 0 4px;
+  width: 8px;
+  background-color: #63d411;
+  border-radius: 50%;
+  display: inline-block;
+}
+.dot-2 {
+  height: 8px;
+  margin: 0 4px;
+  width: 8px;
+  background-color: #117bd4;
+  border-radius: 50%;
+  display: inline-block;
+}
+.dot-3 {
+  height: 8px;
+  margin: 0 4px;
+  width: 8px;
+  background-color: #fdc911;
+  border-radius: 50%;
+  display: inline-block;
+}
+.dot-4 {
+  height: 8px;
+  margin: 0 4px;
+  width: 8px;
+  background-color: #d42d11;
+  border-radius: 50%;
+  display: inline-block;
+}
+.dot-5 {
+  height: 8px;
+  margin: 0 4px;
+  width: 8px;
+  background-color: #c8c8c8;
+  border-radius: 50%;
+  display: inline-block;
+}
+.filter-panel-city {
+  display: flex;
+  flex-direction: column;
+}
+.ant-select ant-select-selection-item span {
+  color: #656565 !important;
+}
+
+.filter-panel-parameters {
+  display: flex;
+  flex-direction: column;
+}
+.checkbox-block > span {
+  color: #1a1a1a !important;
+  margin-left: 8px;
+}
+.filter-panel-purpose {
+  display: flex;
+  flex-direction: column;
+}
+.group-btn {
+  justify-content: space-between;
+}
+.clear-btn,
+.search-btn {
+  border-radius: 4px;
+  width: 45%;
+}
+.clear-btn span {
+  color: #2c5de5 !important;
+  font-weight: 600;
+}
+.clear-btn {
+  background: #eef3ff;
+  border: 1px solid #2c5de5;
+}
+.search-btn {
+  background: #2c5de5;
+}
+.search-btn span {
+  color: #fff !important;
+}
+.search-btn:hover span {
+  color: #2c5de5 !important;
+}
+.header-bar {
+  display: flex;
+  background: #e7eef8;
+  margin-bottom: 10px;
+  border-radius: 4px;
+  border: 1px solid #d3dff0;
+  height: 45px;
+  padding: 5px;
+  justify-content: space-between;
+}
+.header-bar > div {
+  display: flex;
+}
+.header-bar > div > div {
+  display: flex;
+}
+.header-btn {
+  border: 1px solid #d3dff0;
+  margin-right: 5px;
+  width: 32px;
+  height: 32px;
+  border-radius: 4px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.header-date-btn {
+  display: flex;
+  justify-content: space-between;
+}
+.header-date-btn span {
+  color: #252525 !important;
+}
+.header-page-btn {
+  border-radius: 4px;
+  background: #ff5800;
+  display: flex;
+  align-items: center;
+  padding: 15px 30px;
+  border: 1px solid #ff5800 !important ;
+}
+.header-page-btn:hover span {
+  color: #ff5800 !important;
+}
+.header-page-btn span {
+  color: #fff !important;
+  font-weight: 600;
+}
+
+.page-label span {
+  position: absolute;
+  padding-left: 10px;
+}
+.page-label {
+  overflow: hidden;
+}
+
+.outdoor-table-bar {
+  width: 100%;
+  margin-left: auto;
+}
+
+.formItem-title {
+  font-weight: bold;
+  color: #1a1a1a;
+  font-size: 14px;
+}
+
+.projectName-input {
+  padding-left: 30px;
+}
+
+@mixin styled-placeholder {
+  overflow: visible;
+  z-index: 99;
+  width: 8rem !important;
+  display: block;
+}
+
+form {
+  .period-filter {
+    position: relative;
+    display: block;
+    .ant-picker-input:first-child {
+      margin-left: 22px;
+      width: 6rem;
+      display: block;
+      z-index: 1;
+    }
+    .ant-picker-range-separator {
+      margin-left: 0;
+      padding: 0 2px 6px 1px;
+      z-index: 0;
+    }
+    .ant-picker-range-separator ~ .ant-picker-input {
+      margin-left: 0;
+      width: 6rem;
+      z-index: 1;
+    }
+    ::-webkit-input-placeholder {
+      @include styled-placeholder;
+    }
+    ::-moz-placeholder {
+      @include styled-placeholder;
+    }
+    :-ms-input-placeholder {
+      @include styled-placeholder;
+    }
+    & > svg {
+      position: absolute;
+      top: .6rem;
+      left: .7rem;
+      z-index: 99;
+    }
+
+  }
+}
+
+
+
+
+$border-line-color: #d3dff0;
+$border-checkbox: #c6cdd6;
+
+.gant-chart-root-bars {
+  position: relative;
+  opacity: 0;
+  left: 0px;
+  width: 4px;
+  height: 0px;
+  background: $border-line-color;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  cursor: e-resize;
+  -ms-touch-action: pinch-zoom;
+  touch-action: auto;
+  border-radius: 8px;
+}
+
+.gantt-chart-root {
+  border: solid 2px $border-line-color;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  overflow: auto;
+  border-radius: 8px;
+}
+
+$app-font-family: 'SF UI Display Light', sans-serif;
+$app-font-color: rgb(26, 26, 26);
+$app-font-size: 14px;
+
+.gantt-root-root {
+  font-family: $app-font-family;
+  color: $app-font-color;
+  font-size: $app-font-size;
+  font-weight: 500;
+  overflow: hidden !important;
+  height: auto;
+}
+
+.gantt-chart-left-header {
+  font-family: $app-font-family;
+  color: $app-font-color;
+  font-size: $app-font-size;
+  font-weight: 600 !important;
+  overflow: auto;
+}
+
+.gantt-chart-left-panel-header {
+  font-weight: 600 !important;
+}
+.gantt-chart-right-panel-header {
+  font-weight: 600 !important;
+}
+
+.gantt-chart-right-bar > div:last-child {
+  // height: calc(100vh - 23px) !important;
+
+  &::-webkit-scrollbar-track:horizontal {
+    -webkit-box-shadow: inset 0 0 6px #fff;
+    background-color: #fff;
+  }
+
+  &::-webkit-scrollbar {
+    width: 8px;
+    background-color: #fff;
+    border-radius: 4px;
+    height: 3px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: #C1C1C1;
+    // border: 2px solid #555555;
+    border-radius: 4px;
+  }
+}
+
+.gantt-chart-left-panel > div:last-child {
+  // height: calc(100vh - 23px) !important;
+
+  &::-webkit-scrollbar-track:horizontal {
+    -webkit-box-shadow: inset 0 0 6px #fff;
+    background-color: #fff;
+    // display: none;
+  }
+
+  &::-webkit-scrollbar {
+    width: 0px;
+    background-color: #fff;
+    height: 3px;
+    // display: none;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: #C1C1C1;
+    border-radius: 4px;
+    // display: none;
+    // border: 2px solid #555555;
+  }
+}
+
+
+/* для элемента input c type="checkbox" */
+.gantt-checkbox-2-label > input {
+  position: absolute;
+  z-index: -1;
+  opacity: 0;
+}
+
+/* для элемента label, связанного с .custom-checkbox */
+.gantt-checkbox-2-label > span {
+  display: inline-flex;
+  align-items: center;
+  user-select: none;
+}
+
+/* создание в label псевдоэлемента before со следующими стилями */
+.gantt-checkbox-2-label > span::before {
+  content: '';
+  display: inline-block;
+  width: 1.1em;
+  height: 1.1em;
+  flex-shrink: 0;
+  flex-grow: 0;
+  border: 1px solid $border-checkbox;
+  border-radius: 0.25em;
+  margin-right: 0.5em;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: 50% 50%;
+  margin-top: 0.05rem;
+  margin-left: 0.4rem;
+}
+
+/* стили при наведении курсора на checkbox */
+.gantt-checkbox-2-label > input:not(:disabled):not(:checked) + span:hover::before {
+  border-color: #b3d7ff;
+}
+
+/* стили для активного чекбокса (при нажатии на него) */
+.gantt-checkbox-2-label > input:not(:disabled):active + span::before {
+  background-color: #b3d7ff;
+  border-color: #b3d7ff;
+}
+
+///* стили для чекбокса, находящегося в фокусе */
+//.gantt-checkbox-2-label>input:focus+span::before {
+//  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+//}
+
+///* стили для чекбокса, находящегося в фокусе и не находящегося в состоянии checked */
+//.gantt-checkbox-2-label>input:focus:not(:checked)+span::before {
+//  border-color: #80bdff;
+//}
+
+/* стили для чекбокса, находящегося в состоянии checked */
+.gantt-checkbox-2-label > input:checked + span::before {
+  border-color: #0b76ef;
+  background-color: #0b76ef;
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3e%3cpath fill='%23fff' d='M6.564.75l-3.59 3.612-1.538-1.55L0 4.26 2.974 7.25 8 2.193z'/%3e%3c/svg%3e");
+}
+
+/* стили для чекбокса, находящегося в состоянии disabled */
+.gantt-checkbox-2-label > input:disabled + span::before {
+  background-color: #e9ecef;
+}
+.gantt-checkbox-2-label-container {
+}
+
+.gantt-description-item {
+  margin: 0px;
+  padding: 9px 0px 0px 0px;
+}
+
+//.description-row-root:nth-child(odd) {background-color:#CCC;}
+.description-row-root:nth-child(even) {
+  background-color: #f5f7fa;
+}
+
+.gantt-wrapped-days-of-week-head {
+  text-align: center;
+  color: #8aa1c1;
+}
+.gantt-wrapped-days-of-week-head-weekends {
+  text-align: center;
+  color: #d42d11;
+}
+.gantt-wrapped-period-head {
+  text-align: center;
+}
+
+.gantt-svg-title {
+  font-family: $app-font-family;
+  color: #00284c !important;
+  font-size: $app-font-size;
+  font-weight: 500 !important;
+}
+
+.gantt-bar-status-free {
+  fill: darken(saturate(#97D411, 1%), 2%);
+  fill-opacity: 1;
+  stroke: darken(#97D411, 10%);
+  stroke-width: 0.65px;
+  opacity: 0.6;
+}
+
+.gantt-bar-status-saled {
+  fill: darken(saturate(#FFB9AD, 1%), 2%);
+  fill-opacity: 1;
+  stroke: darken(#FFB9AD, 10%);
+  stroke-width: 0.65px;
+  opacity: 0.6;
+}
+
+.gantt-bar-status-approved {
+  fill: darken(saturate(#FFE7AE, 10%), 7%);
+  fill-opacity: 1;
+  stroke: darken(#FFE7AE, 10%);
+  stroke-width: 0.65px;
+  opacity: 0.6;
+}
+
+.gantt-bar-status-reserved {
+  fill: darken(#DFE6F1, 6%);
+  fill-opacity: 1;
+  stroke: darken(#DFE6F1, 10%);
+  stroke-width: 0.65px;
+  opacity: 0.6;
+}
+
+.gantt-bar-status-unavailable {
+  fill: darken(#C8C8C8, 6%);
+  fill-opacity: 1;
+  stroke: darken(#C8C8C8, 10%);
+  stroke-width: 0.65px;
+  opacity: 0.6;
+}
+
+.dot-unavailable {
+  background-color: darken(#c8c8c8, 20%) !important;
+}
+
+.dot-all {
+  background-color: #ffffff !important;
+  border: 0.5px solid;
+  border-color: #000000 !important;
+}
+

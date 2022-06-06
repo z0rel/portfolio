@@ -1,0 +1,189 @@
+@import "../../../../../node_modules/bootstrap/scss/bootstrap";
+
+.ant-space-item {
+  width: 100%;
+  margin-right: 0 !important;
+}
+.ant-popover-inner-content {
+  padding: 0;
+}
+
+.project-card-reservation-status {
+  margin-top: .4rem;
+}
+
+
+@mixin reservationstatus($classname, $color) {
+  #{$classname} {
+    margin-right: 10px;
+    font-size: 12px;
+    font-weight: bold;
+    color: $color;
+    position: relative;
+    margin-left: 10px
+  };
+  #{$classname}:before {
+    content: "";
+    height: 8px;
+    width: 8px;
+    border-radius: 50%;
+    background-color: $color;
+    position: absolute;
+    bottom: 3px;
+    left: -12px;
+  }
+};
+
+@include reservationstatus('.sold', #D42D11);
+@include reservationstatus('.confirmed', #8E730F);
+@include reservationstatus('.free', darken(#97D411, 10%));
+@include reservationstatus('.reserved', darken(#117bd4, 10%));
+@include reservationstatus('.unavailable', darken(#959595 , 10%));
+
+
+.sectionItem {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 12px 20px;
+  gap: 5px;
+  width: 100%;
+}
+
+.sectionItem>img {
+  margin-right: 4px;
+}
+
+
+
+.project-card-style {
+  color: #1A1A1A;
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.project-card-root-style {
+  width: 435px;
+  flex-direction: column;
+  box-shadow: 0px 4px 7px rgba(0, 0, 0, 0.119646);
+  border-radius: 8px;
+}
+
+.project-card-root-style-2 {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 20px 20px 15px 20px;
+}
+
+.project-card-root-style-3 {
+  display: flex;
+  flex-direction: column;
+}
+
+.project-card-comment {
+  padding: 0 15px;
+  margin-bottom: 15px;
+}
+
+
+.project-card-package-description {
+  display: flex;
+  justify-content: space-between;
+  border-top: 1px solid #D3DFF0;
+  border-bottom: 1px solid #D3DFF0;
+}
+
+.project-card-package-description-inner {
+  border-right: 1px solid #D3DFF0;
+}
+
+.project-card-package-description-title {
+  font-weight: bold;
+}
+.project-card-selection-item {
+  border-right: 1px solid #D3DFF0;
+}
+.project-card-peoples-root {
+  display: flex;
+  flex-direction: column;
+  border-bottom: 1px solid #D3DFF0;
+  margin-bottom: 15px;
+}
+.project-card-peoples-root-inner {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 15px 0px;
+}
+
+.project-card-peoples-root-backoffice-inner {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 15px;
+}
+
+.project-card-people-manager-name {
+  fontWeight: bold;
+  fontSize: 14px;
+  font-weight: bold;
+}
+.project-card-peoples-manager-role {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  fontSize: 12px;
+}
+.project-card-manager-font-weight {
+  font-weight: bold;
+}
+
+div.popover {
+  max-width: 500px;
+  width: 500px;
+  flex-direction: column;
+  box-shadow: rgba(0, 0, 0, 0.12) 0px 4px 7px;
+  border-radius: 8px;
+}
+
+div.popover .popover-body {
+  margin: 0;
+  padding: 0;
+}
+
+.project-card-button {
+  border-radius: 5px;
+  margin-top: 1.5rem;
+  margin-left: 5px;
+}
+
+div.project-card-close-button {
+  border: 1px #d3dff0 solid;
+  border-radius: 4px;
+  width: 1.7rem;
+  height: 1.7rem;
+  margin: .4rem .4rem 0 auto;
+  position: absolute;
+  right: 0;
+  top: 0;
+  .project-card-close-button2 {
+    display: flex;
+    align-items: center;
+    width: 1.7rem;
+    height: 1.7rem;
+    opacity: 0.4;
+    cursor: pointer;
+    &:hover {
+      opacity: 1;
+    }
+  }
+
+  svg {
+    width: .8rem;
+    height: .8rem;
+    margin: 7px 8px 8px 6.5px;
+    display: block;
+    stroke:#000000;
+    stroke-width:3;
+  }
+}

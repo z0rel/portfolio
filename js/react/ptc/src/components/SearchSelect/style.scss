@@ -1,0 +1,31 @@
+.styled-for-svg-placeholder {
+  padding: 8px 12px 5px 10px;
+  .ant-select-item-option-content {
+    display: flex;
+    flex-flow: row nowrap;
+    align-content: center;
+    svg {
+      margin: 0 8px 0 0;
+      display: block;
+      padding-top: 1px;
+    }
+    span {
+      display: block;
+      text-wrap: normal;
+      width: 100%;
+    }
+  }
+}
+
+.dropdown-svg-with-loader {
+  position: absolute;
+  left: 9px;
+  display: block;
+}
+
+.dropdown-option-loader > .ant-select-item-option-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+}

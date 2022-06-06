@@ -1,0 +1,254 @@
+syntax = "proto3";
+
+package estimate;
+
+
+message AgencyCommission {
+  bool to_rent       = 1;
+  bool to_nalog      = 2;
+  bool to_print      = 3;
+  bool to_mount      = 4;
+  bool to_additional = 5;
+  bool to_nonrts     = 6;
+  string percent     = 7;
+  string value       = 8;
+}
+
+
+message ConstructionSide {
+  string id              =  1;
+  string postcode_title  =  2;
+  int32 num_in_district  =  3;
+  string side_title      =  4;
+  string side_code       =  5;
+  string adv_side_code   =  6;
+  string adv_side_title  =  7;
+  string city_id         =  8;
+  string city_title      =  9;
+  string format_id       = 10;
+  string format_code     = 11;
+  string format_title    = 12;
+  string address_title   = 13;
+  bool   is_nonrts       = 14;
+  string nonrts_owner    = 15;
+  bool status_connection = 16;
+}
+
+
+message ReservationPart {
+  string id                          = 1;  // Идентификатор бронирования
+  string date_from                   = 2;  // Дата окончания бронирования
+  string date_to                     = 3;  // Дата начала бронирования
+  bool branding                      = 4;  // Необходимо брендирование или нет
+  string reservation_type_id         = 5;  // Бронирования -> Тип брони
+  string reservation_type_title      = 6;  // Бронирования -> Тип брони
+  ConstructionSide construction_side = 7;  // Бронирования -> Сторона конструкции
+  AgencyCommission agency_commission = 8;  // Бронирование -> Агентская комиссия
+}
+
+
+message ReservationRts {
+    ReservationPart reservation                              =  1;   // Общая информация о бронировании
+    string discount_price_percent_setted                     =  2;   // Заданный процент скидки по прайсу
+    string rent_by_price_after_discount_setted               =  3;   // Заданная стоимость после скидки по прайсу
+    string rent_to_client_setted                             =  4;   // Заданная аренда на клиента
+    string discount_to_client_percent_setted                 =  5;   // Заданный процент скидки Аренды на клиента
+    string rent_to_client_after_discount_setted              =  6;   // Заданная стоимость Аренды после всех скидок
+    string discount_nalog_percent_setted                     =  7;   // Заданный процент скидки на налог
+    string nalog_after_discount_setted                       =  8;   // Заданная стоимость налога после скидки
+    string rent_by_price_calculated                          =  9;   // Расчитанное значение аренды по прайсу
+    string discount_price_percent_calculated                 = 10;   // Расчитанное значение процента скидки по прайсу
+    string discount_price_percent_selected                   = 11;   // Выбранное значение процента скидки по прайсу
+    string value_after_discount_price_calculated             = 12;   // Расчитанная стоимость после скидки по прайсу
+    string value_after_discount_price_selected               = 13;   // Выбранная стоимость аренды со скидкой по прайсу
+    string value_rent_to_client_selected                     = 14;   // Выбранное значение аренды на клиента
+    string discount_client_percent_selected                  = 15;   // Выбранное значение скидки на клиента
+    string value_rent_to_client_after_discount_selected      = 16;   // Выбранная стоимость аренды на клиента со скидкой по прайсу
+    string additional_static_printing                        = 17;   // Печать (из админки)
+    string additional_static_mounting                        = 20;   // Монтаж (из админки)
+    string additional_static_additional                      = 23;   // Доп. расходы (из админки)
+    string additional_static_nalog                           = 26;   // Налоги (из админки)
+    string additional_static_nalog_discount_percent_selected = 27;   // Скидка на налоги - % расчетный
+    string additional_static_nalog_discount_calculated       = 28;   // Скидка на налоги - расчетная
+    string additional_static_nalog_value_after_discount      = 29;   // Значение после скидки на налоги (из админки)
+    string additional_static_nalog_discount_selected         = 32;   // Выбранная скидка на налог в доп. расходах
+    string itog_summary                                      = 33;   // Итого, суммарная стоимость
+    string itog_agency_commission                            = 34;   // В т.ч. агентская комиссия
+    string itog_summary_without_agency_commission            = 35;   // Итого за вычетом агентской комиссии
+}
+
+
+message AddressProgrammItem {
+  string id                      =  1;
+  int32  count                   =  2; // Количество
+  string city_title              =  3; // Название города
+  string city_id                 =  4; // Название города
+  string format_title            =  5; // Наименование формата
+  string format_id               =  6; // Наименование формата
+  string date_from               =  7; // Дата начала
+  string date_to                 =  8; // Дата окончания
+  string rent                    =  9; // Расчитанное значение аренды на клиента (без скидки)
+  string discount_client_percent = 10; // Расчитанное значение процента скидки по прайсу
+  string discount_client_value   = 11; // Расчитанное значение процента скидки по прайсу
+  string printing                = 12; // Стоимость печати
+  string mounting                = 13; // Стоимость монтажа
+  string additional              = 14; // Стоимость дополнительных расходов
+  string nalog                   = 15; // Стоимость налогов
+  string nalog_discount_percent  = 16; // Процент скидки на налог
+  string nalog_discount_value    = 17; // Стоимость налога после скидки
+  string itog_summary            = 18; // Итого, суммарная стоимость
+}
+
+
+message EstimateSummary {
+  string rent_by_price                                    =  1; // Аренда по прайсу суммарная
+  string rent_by_price_discounted                         =  2; // Аренда по прайсу со скидкой по прйсу суммарная
+  string rent_by_price_discount_percent                   =  3; // Итоговый процент скидки по прайсу
+  string rent_to_client                                   =  4; // Аренда на клиента суммарная
+  string rent_to_client_discounted                        =  5; // Аренда на клиента суммарная со скидкой на клиента
+  string rent_to_client_discount_percent                  =  6; // Итоговый процент скидки на клиента
+  string static_mounting                                  =  7; // Итоговая доп. работа - монтаж
+  string static_printing                                  =  8; // Итоговая доп. работа - печать
+  string static_additional                                =  9; // Итоговая доп. работа - доп. расходы
+  string nalog_before_discount                            = 10; // Итоговый налог до скидки
+  string nalog_after_discount                             = 11; // Итоговый налог после скидки
+  string nalog_discount_percent                           = 12; // Итоговый процент скидки по налогу
+  string agency_commission_value                          = 13; // Итоговое значение агентской комиссии
+  string agency_commission_percent                        = 14; // Итоговый процент агентской комиссии
+  string nonrts_margin                                    = 15; // Итоговая маржа НОН РТС
+  string nonrts_sale                                      = 16; // Итоговая стоимость продажи НОН РТС
+  string additional_rts_before_discount                   = 17; // Итоговая стоимость доп. расходов РТС
+  string additional_rts_after_discount                    = 18; // Итоговая стоимость доп. расходов РТС
+  string summary_estimate_value                           = 19; // Итоговое значение сметы
+  string summary_estimate_value_without_agency_commission = 20; // Итоговое значение сметы за вычетом агентской комиссии
+}
+
+
+message Appendix {
+    string id                           =  1; // идентификатор приложения
+    string code                         =  2; // код приложения
+    string signatory_one                =  3; // подписант в именительном падеже
+    string signatory_two                =  4; // подписант в родительном падеже
+    string signatory_position           =  5; // должность подписанта
+    string payment_date                 =  6; // дата начала приложения
+    string created_date                 =  7; // дата начала приложения
+    string period_start_date            =  8; // дата начала приложения
+    string period_end_date              =  9; // дата окончания действия приложения
+    string contract__code               = 10; // код договора
+    string contract__registration_date  = 11; // дата заключения договора
+    string contract__payment_date       = 12; // оплата не позднее
+    string contract__serial_number      = 13; // номер договора
+    string project__id                  = 14; // идентификатор проекта
+    string project__code                = 15; // код проекта
+    string project__client__bik         = 16; // БИК банка
+    string project__client__bin_number  = 17; // БИН банка
+}
+
+
+message AdditionalRtsByTitle {
+  string name                    = 1; // Наименование дополнительного расхода
+  string summa_before_discount   = 2; // Сумма до скидки
+  string discount_value          = 3; // Сумма скидки
+  string summa_after_discount    = 4; // Сумма после скидки
+  string discount_percent        = 5; // Процент скидки
+  string agency_commission_value = 6; // Процент скидки
+}
+
+
+message AdditionalNonRtsByTitle {
+  string name                    = 1;  // Наименование дополнительного расхода НОН РТС
+  string sale                    = 2;  // Сумма продажи
+  string pay                     = 3;  // Сумма покупки
+  string margin                  = 4;  // Маржа
+  string agency_commission_value = 5;  // Сумма агентской комиссии
+}
+
+
+enum AdditionalRtsCategory {
+  NALOG      = 0; // Налог
+  MOUNTING   = 1; // Монтаж
+  PRINTING   = 2; // Печать
+  RENT       = 3; // Аренда
+  ADDITIONAL = 4; // Доп. расход
+}
+
+
+message AdditionalRts {
+  string id                              = 1;
+  string title                           = 2; // название
+  string city_id                         = 3; // идентификатор города
+  string city_title                      = 4; // название города
+  string start_period                    = 5; // начало периода
+  string end_period                      = 6; // окончание периода
+  int32  count                           = 7; // количество
+  string price                           = 8; // цена
+  string discount_percent                = 9; // процент скидки
+  AdditionalRtsCategory category         = 10; // категория дополнительного расхода
+  string summa_after_discount            = 11; // сумма после скидки
+  string price_after_discount            = 12; // цена после скидки
+  string agency_commission_percent       = 13; // процент агентской комиссии
+  string agency_commission_value         = 14; // значение агентской комиссии
+  string value_without_agency_commission = 15; // сумма за вычтом агентской комиссии
+  string summa_before_discount           = 16; // сумма до скидки
+  string discount_value                  = 17; // сумма скидки
+  AgencyCommission agency_commission     = 18; // агентская комиссия
+}
+
+
+message NonRtsPart {
+    string id                     =  1;  // Идентификатор из базы
+    string start_period           =  2;  // Начало периода
+    string end_period             =  3;  // Конец периода
+    int32 count                   =  4;  // Количество (НОН РТС)
+    string incoming_rent          =  5;  // Входящая стоимость - Аренда
+    string incoming_tax           =  6;  // Входящая стоимость - Налог
+    string incoming_printing      =  7;  // Входящая стоимость - Печать
+    string incoming_installation  =  8;  // Входящая стоимость - Монтаж
+    string incoming_additional    =  9;  // Входящая стоимость - Доп. расходы
+    string incoming_manufacturing = 10;  // Входящая стоимость - Производство
+    string sale_rent              = 11;  // Стоимость продажи - Аренда
+    string sale_tax               = 12;  // Стоимость продажи - Налог
+    string sale_printing          = 13;  // Стоимость продажи - Печать
+    string sale_manufacturing     = 14;  // Стоимость продажи - Производство
+    string sale_installation      = 15;  // Стоимость продажи - Монтаж
+    string sale_additional        = 16;  // Стоимость продажи - Доп. расходы
+    string sale                   = 17;  // Сумма продажи
+    string pay                    = 18;  // Сумма покупки
+    string margin                 = 19;  // Маржа
+}
+
+
+message AdditionalNonRts {
+    NonRtsPart nonrts_part              = 1;  // Раздел с данными НОН РТС
+    string name                         = 2;  // Наименование дополнительного расхода НОН РТС
+    string agency_commission_calculated = 3;  // Сумма агентской комиссии
+    string city__id                     = 4;  // Идентификатор города
+    string city__title                  = 5;  // Наименование города
+    AgencyCommission agency_commission  = 6;  // Агентская комиссия
+}
+
+
+message ReservationsNonrts {
+  ReservationPart reservation    = 1;   // Общая информация о бронировании
+  NonRtsPart nonrts_part         = 2;
+  string agency_commission_value = 3;
+}
+
+
+message AddressProgramm {
+  EstimateSummary itogs              = 1; // сметные итоги
+  Appendix appendix              = 2; // данные приложения
+  repeated AddressProgrammItem items = 3; // данные адресной программы
+}
+
+
+message Estimate {
+  EstimateSummary itogs                                       = 1; // сметные итоги
+  repeated AdditionalNonRtsByTitle additional_nonrts_by_title = 2; // Суммы по дополнительным расходам НОН РТС в разрезе Наименования не включая забронированные рекламные стороны НОН РТС
+  repeated AdditionalRtsByTitle additional_rts_by_title       = 3; // Суммы по дополнительным расходам РТС в разрезе наименования
+  repeated AdditionalRts additional_rts                       = 4; // Суммы по дополнительным расходам РТС
+  repeated AdditionalNonRts additional_nonrts                 = 5; // Стоимость дополнительных услуг НОН РТС
+  repeated ReservationsNonrts reservations_nonrts             = 6; // Стоимость бронирования сторон конструкций НОН РТС
+  repeated ReservationRts reservations                        = 7; // Стоимость бронирования сторон конструкций РТС
+  repeated string errors                                      = 8; // Ошибки расчета сметы
+}

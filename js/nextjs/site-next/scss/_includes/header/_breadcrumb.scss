@@ -1,0 +1,81 @@
+.contentHead .brc { // contentHead
+	.breadcrumb {
+		background: none;
+		justify-content: flex-end;
+		font-family: 'Roboto';
+		font-weight: $navbar-font-weight;
+		margin-bottom: 0;
+		padding-bottom: 0;
+	}
+	.breadcrumb-item.aslink { 
+		a {
+			text-decoration: none;
+		}
+		a .wr {
+			@include setup-link-active();
+		}
+	}
+	.breadcrumb-item.active {
+		@include setup-link-inactive-md();
+	}
+	.breadcrumb-item::before {
+		padding-top: 1px;
+		position: absolute;
+	}
+}
+
+@mixin setup-breadcrumb-fz($breadcrumb-fz) {
+	.contentHead .breadcrumb-item { // contentHead
+		font-size: px2rem($breadcrumb-fz);
+	}
+}
+
+@mixin setup-breadcrumb-media($breakpoint) {
+	@if $breakpoint == 'xxs' {
+		@include setup-breadcrumb-fz(10);
+		.breadcrumb-item.aslink { 
+			margin-right: px2rem(15);
+		}
+		.contentHead  .breadcrumb-item::before { // contentHead
+			margin-left: px2rem(-15);
+		}
+	}
+	@if $breakpoint == 'xs' {
+		@media (min-width: $bp-xxs) {
+			@include setup-breadcrumb-fz(11);
+		}
+		@media (min-width: 400px) {
+			.breadcrumb-item.aslink { 
+				margin-right: px2rem(27);
+			}
+			.contentHead  .breadcrumb-item::before { // contentHead
+				margin-left: px2rem(-20);
+			}
+			@include setup-breadcrumb-fz(12);
+		}
+		@media (min-width: 450px) {
+			@include setup-breadcrumb-fz(13);
+		}
+		@media (min-width: 500px) {
+			@include setup-breadcrumb-fz(14);
+		}
+		@media (min-width: 500px) {
+			@include setup-breadcrumb-fz(14);
+		}
+	}
+	@else if $breakpoint == 'sm' {
+		@include media-breakpoint-up(sm) {
+			@include setup-breadcrumb-fz(15);
+			.breadcrumb-item.aslink { 
+				margin-right: px2rem(27);
+			}
+		}
+	}
+	@else if $breakpoint == 'md' {
+		@include media-breakpoint-up(md) {
+			.breadcrumb-item.aslink { 
+				margin-right: px2rem(30);
+			}
+		}
+	}
+}

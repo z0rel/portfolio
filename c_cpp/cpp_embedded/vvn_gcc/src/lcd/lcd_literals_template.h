@@ -1,0 +1,71 @@
+#include <avr/pgmspace.h>
+#include <stdint.h>
+
+namespace LCD_constants {
+    const char Logo_vvn[] PROGMEM = tr("   ВВН-8");
+    const char Logo_Automatics[] PROGMEM = tr("ПАО {\"}Автоматика{\"}");
+    const char Test_memory[] PROGMEM = tr("    Тест ОЗУ");
+    const char Test_memory_error[] PROGMEM = tr(" ОЗУ неисправна");
+    const char g[] PROGMEM = tr("г");
+    const char Pa_s_kg_m3[] PROGMEM = tr("Па{*}с{*}кг/m{^3}");
+    const char Pa_s[] PROGMEM = tr("Па{*}с");
+    const char Functions[] PROGMEM = tr("Функции");
+    const char Reset[] PROGMEM = tr("Сброс");
+    const char Kvitirovaine[] PROGMEM = tr("Квитирование");
+    const char Reset_archive[] PROGMEM = tr("Очистка архива");
+    const char grad_Celsius[] PROGMEM = tr("{^grad}C");
+    const char Dencity[] PROGMEM = tr("Плотность");
+    const char p_equal[] PROGMEM = tr("p=");
+    const char kg_div_m3[] PROGMEM = tr("кг/м{^3}");
+    const char Access[] PROGMEM = tr("Доступ");
+    const char Opening_access[] PROGMEM = tr("Открытие доступа");
+    const char Access_of_believer[] PROGMEM = tr("Доступ поверит.");
+    const char Password[] PROGMEM = tr("Пароль");
+    const char password_chars[] PROGMEM = tr("АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЭЮЯ01234567890_");
+    const char Setting_password[] PROGMEM = tr("Установка пароля");
+    const char Close_access_query[] PROGMEM = tr("Закрыть доступ?");
+    const char Access_of_operator_level[] PROGMEM = tr("Доступ оператор");
+    const char Setup[] PROGMEM = tr("Настройка");
+    const char Set_clocks[] PROGMEM = tr("Установка часов");
+    const char Date[] PROGMEM = tr("Дата");
+    const char Time[] PROGMEM = tr("Время");
+    const char Configuration[] PROGMEM = tr("Конфигурация");
+    const char Termocompensation_yes[] PROGMEM = tr("Термокомпен. да");
+    const char Termocompensation_no[] PROGMEM = tr("Термокомпен. нет");
+    const char Indication_reduced[] PROGMEM = tr("Индикация прив.");
+    const char Indication_current[] PROGMEM = tr("Индикация текущ.");
+    const char Dencity_measurement[] PROGMEM = tr("Плотность измер.");
+    const char Dencity_constant[] PROGMEM = tr("Плотность ввод.");
+    const char Time_of_writing[] PROGMEM = tr("Время зап.");
+    const char sec[] PROGMEM = tr("сек");
+    const char min[] PROGMEM = tr("мин");
+    const char Writed[] PROGMEM = tr("Записано");
+    const char Top_level[] PROGMEM = tr("Верхний уровень");
+    const char Relay_normal_off[] PROGMEM = tr("Реле норм. выкл.");
+    const char Relay_normal_on[] PROGMEM = tr("Реле норм. вкл.");
+    const char Chanel_memorize[] PROGMEM = tr("Канал запмоинает");
+    const char Chanel_through[] PROGMEM = tr("Канал сквозной");
+    const char Sound_off[] PROGMEM = tr("Звук нет");
+    const char Sound_1Gz[] PROGMEM = tr("Звук 1Гц");
+    const char Sound_2Gz[] PROGMEM = tr("Звук 2Гц");
+    const char Setting[] PROGMEM = tr("Уставка");
+    const char Low_lewel[] PROGMEM = tr("Нижний уровень");
+    const char Parameters_of_RS485[] PROGMEM = tr("Параметры RS-485");
+    const char Network_address[] PROGMEM = tr("Сетевой адр.");
+    const char Baud[] PROGMEM = tr("Бод");
+    const char Calibration[] PROGMEM = tr("Калибровка");
+    const char Sensor[] PROGMEM = tr("датчика");
+    const char ADC_of_temperature[] PROGMEM = tr("АЦП температуры");
+    const char mA[] PROGMEM = tr("мА");
+    const char ADC_of_dencity[] PROGMEM = tr("АЦП плотности");
+    const char Alignment[] PROGMEM = tr("Юстировка");
+    const char DAC_of_viscosity[] PROGMEM = tr("ЦАП вязкости");
+    const char Range[] PROGMEM = tr("Диапазон");
+    const char VVN_8_011[] PROGMEM = tr("ВВН-8-011");
+    const char VVN_8_021[] PROGMEM = tr("ВВН-8-021");
+    const char VVN_8_031[] PROGMEM = tr("ВВН-8-031");
+    const char VVN_8_041[] PROGMEM = tr("ВВН-8-041");
+    const char VVN_8_051[] PROGMEM = tr("ВВН-8-051");
+    const char Uadc[] PROGMEM = tr("Uацп");
+
+}

@@ -1,0 +1,151 @@
+@import "../../../_mixins/background-center";
+
+@mixin background-image-jumbotron() {
+	background-image: url("/stankoremontnyj-zavod.jpg"); 
+	@media (max-width: 991px) /* and (max-width: 991px) */ {
+		background-image: url("/stankoremontnyj-zavod-960.jpg");
+	}
+	@media (max-width: 945px) {
+	 	background-image: url("/stankoremontnyj-zavod-945.jpg");
+	}
+	@media /* (max-height: 740px) and */ (max-width: 799px) {
+		background-image: url("/stankoremontnyj-zavod-740.jpg");
+	}
+	@media (max-width: 600px) {
+		background-image: url("/stankoremontnyj-zavod-600.jpg");
+	}
+	@media /* (max-height: 575px) and */ (max-width: 575px) {
+		background-image: url("/stankoremontnyj-zavod-575.jpg");
+	}
+	@media /* (max-height: 500px) and */ (max-width: 500px) {
+		background-image: url("/stankoremontnyj-zavod-500.jpg");
+	}
+}
+
+.parallaxGroup {
+  position: relative;
+  // height: 100vh;
+  height: 648px;
+  @media (max-height: 965px) {
+  }
+  @media (max-height: 740px) {
+  }
+  @media (max-height: 600px) {
+  }
+  @media (max-height: 575px) {
+  }
+  @media (max-height: 500px) {
+  }
+  transform-style: preserve-3d;
+}
+
+$jumbo-bg-height: 648px;
+
+.parallaxLayer {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+
+.contentHead.main.parallaxLayerBack {
+    // transform: translateZ(-1px);
+	@include background-image-jumbotron; 
+    height: 100%;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+
+	background-clip: border-box;
+	background-origin: padding-box;
+	background-position: 50% 0%;
+	background-position-x: 50%;
+	background-position-y: 0%;
+
+	background-size: auto $jumbo-bg-height;
+	box-sizing: border-box;
+}
+.contentHead.main.parallaxLayerBase {
+    // transform: translateZ(0);
+	@include background-center;
+}
+
+.contentHead.internal .head {
+	background-image: url("/stankoremontnyj-zavod.jpg"); 
+	// @media (max-width: 965px) {
+	// 	background-image: url("/stankoremontnyj-zavod-960.jpg");
+	// }
+	@media (max-width: 740px) {
+		background-image: url("/stankoremontnyj-zavod-740.jpg");
+	}
+	@media (max-width: 600px) {
+		background-image: url("/stankoremontnyj-zavod-600.jpg");
+	}
+	@media (max-width: 575px) {
+		background-image: url("/stankoremontnyj-zavod-575.jpg");
+	}
+	@media (max-width: 500px) {
+		background-image: url("/stankoremontnyj-zavod-500.jpg");
+	}
+	@include background-center;
+}
+
+.contentHead {
+	padding-top: 0px;
+	// background-color: $color-how-we-works-secondary;
+	.jumbotron {
+		height: 22.318rem;
+		background-color: rgba(0,0,0,0);
+		.header-title {
+	        font-family: "Roboto";
+			font-weight: $font-weight-bold;
+			color: $color-white;
+		}
+		.header-title-2 {
+	        font-family: "Open Sans";
+			color: $color-white;
+        	margin-left: auto;
+		}
+		.btn {
+			border-radius: 7px;
+			background-color: transparentize($color: #8e6c11, $amount: 0.8);
+			background-color: rgba(53, 49, 51, 0.78);
+			border-width: 1px;
+			border-color: $color-white;
+
+	        font-family: "Roboto";
+			font-weight: $button-font-weight;
+			letter-spacing: 0.03rem;
+		}
+		@include button-focus-none; 
+
+		text-align: right;
+		margin-bottom: 2rem;
+		padding: 4rem 0;
+	}
+	.head-button-p { 
+		text-align: center;
+    }
+} 
+
+#navbarServicesLink.show {
+	z-index: 1000;
+}
+
+// .jumbotron {
+//   padding: $jumbotron-padding ($jumbotron-padding / 2);
+//   margin-bottom: $jumbotron-padding;
+//   background-color: $jumbotron-bg;
+//   @include border-radius($border-radius-lg);
+// 
+//   @include media-breakpoint-up(sm) {
+//     padding: ($jumbotron-padding * 2) $jumbotron-padding;
+//   }
+// }
+// 
+// .jumbotron-fluid {
+//   padding-right: 0;
+//   padding-left: 0;
+//   @include border-radius(0);
+// }
+
