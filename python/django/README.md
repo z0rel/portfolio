@@ -1,5 +1,7 @@
 Элементы кода бекенда макретинговой ERP-системы на Django.
 
+Скриншот API находится в каталоге [screenshots](/python/django/screenshots).
+
 Технологии, используемые в проекте: 
 - Django models, 
 - Django QuerySet + django-postgres-extra, 

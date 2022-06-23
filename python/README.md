@@ -45,6 +45,8 @@
 ## [cython/estimate_generator](/python/cython/estimate_generator)
 Компилируемый код Cython системы автоматизированного генератора сметных расчетов
 
+Скриншот рабочего процесса генерации находится [screenshots](/python/cython/estimate_generator/screenshots).
+
 Годы разработки: 2019&mdash;2021
 
 
